@@ -28,3 +28,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 =======
 # PubliPrototype
 Angular/Java prototype
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
