@@ -1,0 +1,11 @@
+<div  class="container">
+  <div class="publication" *ngFor="let publication of publications">
+    <div class="image" *ngIf="publication.imagePath"><img src='{{publication.imagePath}}'></div>
+    <div class="details">
+      <a href="#" class="title">{{publication.title}} </a>
+      <div class="date"> Publié le : {{publication.publicationDate}}</div>
+      <div class="content">{{publication.content}}</div>
+      <div class="author"> auteur : <a href="#">{{publication.author.username}}</a></div>
+    </div>
+  </div>
+</div>
