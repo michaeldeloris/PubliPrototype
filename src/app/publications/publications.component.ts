@@ -27,4 +27,12 @@ export class PublicationsComponent implements OnInit {
     this.router.navigate(['publication', 'edit'], {queryParams: {id}});
   }
 
+  deletePublication(id: number) {
+    const result = confirm('Vous allez supprimer cette publication');
+    if(result) {
+      this.dataService.deletePublication(id).subscribe(
+        next => this.router.navigate([''])
+      )
+    }
+  }
 }

@@ -40,6 +40,12 @@ export class DataService {
     return of(existingPublication);
   }
 
+  deletePublication(id: number): Observable<any> {
+    const publication = this.publications.find(p => p.id === id);
+    this.publications.splice(this.publications.indexOf(publication),1);
+    return of(null);
+  }
+
   constructor() {
     this.users = new Array<User>();
 
