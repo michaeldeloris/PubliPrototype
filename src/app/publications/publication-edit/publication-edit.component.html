@@ -17,14 +17,16 @@
 
       <div class="form-group col-12">
         <label for="content">Contenu</label>
-        <textarea type="text" class="form-control" id="content" rows="10" [(ngModel)]="publication.content" name="content" required #content="ngModel"></textarea>
+        <textarea type="text" class="form-control" id="content" rows="10" [(ngModel)]="publication.content" name="content" required #content="ngModel"
+                  (change)="checkIfContentIsValid()"></textarea>
         <div *ngIf="content.touched && content.invalid" class="alert alert-danger">Contenu requis</div>
+        <div *ngIf="!isContentValid && content.touched" class="alert alert-danger">Contenu invalide</div>
       </div>
     </div>
 
     <div class="row">
       <div class="col">
-        <button type="button" class="btn btn-primary" (click)="onSubmit()" [disabled]="!isTitleValid || content.invalid" >Enregistrer</button>
+        <button type="button" class="btn btn-primary" (click)="onSubmit()" [disabled]="!isTitleValid || !isContentValid" >Enregistrer</button>
       </div>
     </div>
   </form>

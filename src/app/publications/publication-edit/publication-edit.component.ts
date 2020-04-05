@@ -15,6 +15,7 @@ export class PublicationEditComponent implements OnInit {
   dataLoaded = false;
 
   isTitleValid = false;
+  isContentValid= false;
 
   constructor(private dataService: DataService,
               private route: ActivatedRoute,
@@ -33,7 +34,12 @@ export class PublicationEditComponent implements OnInit {
         this.publication = new Publication();
         this.dataLoaded = true;
     }
+    this.initilizeForm();
+  }
+
+  initilizeForm() {
     this.checkIfTitleIsValid();
+    this.checkIfContentIsValid();
   }
 
   checkIfTitleIsValid() {
@@ -41,6 +47,14 @@ export class PublicationEditComponent implements OnInit {
       this.isTitleValid = this.publication.title.trim().length > 0;
     } else {
       this.isTitleValid = false;
+    }
+  }
+
+  checkIfContentIsValid() {
+    if(this.publication.content) {
+      this.isContentValid = this.publication.content.trim().length > 0;
+    } else {
+      this.isContentValid = false;
     }
   }
 
