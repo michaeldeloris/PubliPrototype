@@ -19,8 +19,12 @@ export class PublicationsComponent implements OnInit {
     this.publications = this.dataService.publications;
   }
 
-  editPublication() {
+  addPublication() {
     this.router.navigate(['publication', 'add']);
+  }
+
+  editPublication(id: number) {
+    this.router.navigate(['publication', 'edit'], {queryParams: {id}});
   }
 
 }

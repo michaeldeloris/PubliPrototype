@@ -12,22 +12,32 @@ export class PublicationEditComponent implements OnInit {
 
   publication: Publication;
 
+  dataLoaded = false;
+
   constructor(private dataService: DataService,
               private route: ActivatedRoute,
               private router: Router) { }
 
   ngOnInit(): void {
-    const id = this.route.queryParams['id'];
+    const id = this.route.snapshot.queryParams['id'];
     if(id) {
-      //TODO : get publication by ID and fill forms
-    } else {
-      this.publication = new Publication();
+      this.dataService.getPublication(+id).subscribe(
+        next => {
+          this.publication = next;
+          this.dataLoaded = true;
+        }
+        );
+      } else {
+        this.publication = new Publication();
+        this.dataLoaded = true;
     }
   }
 
   onSubmit() {
     if(this.publication.id != null) {
-      //TODO : edit existing publication
+      this.dataService.editPublication(this.publication).subscribe(
+        next => this.router.navigate([''])
+      )
     } else {
       this.dataService.addPublication(this.publication).subscribe(
         next => this.router.navigate(['']) // TODO : manage error

@@ -12,7 +12,8 @@ import { PublicationEditComponent } from './publications/publication-edit/public
 
 const routes: Routes = [
   {path: "", component: PublicationsComponent},
-  {path: "publication/add", component: PublicationEditComponent}
+  {path: "publication/add", component: PublicationEditComponent},
+  {path: "publication/edit", component: PublicationEditComponent}
 ];
 
 @NgModule({

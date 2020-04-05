@@ -4,22 +4,30 @@
   border-radius: 15px;
   margin-bottom: 15px;
   padding: 5px 10px 5px 10px;
-  .image {
-    width: auto;
-    max-width: 200px;
-    margin-right: 15px;
-    img {
-      max-width: 100%;
+  .content {
+    display:flex;
+    width: 95%;
+    .image {
+      width: auto;
+      max-width: 200px;
+      margin-right: 15px;
+      img {
+        max-width: 100%;
+      }
+    }
+    .details {
+      .title {
+        font-weight: bold;
+        font-size: 15px;
+      }
+      .content {
+        display: none;
+      }
     }
   }
-  .details {
-    .title {
-      font-weight: bold;
-      font-size: 15px;
-    }
-    .content {
-      display: none;
-    }
+  .buttons {
+    display: flex;
+    flex-direction: column;
   }
 }
 

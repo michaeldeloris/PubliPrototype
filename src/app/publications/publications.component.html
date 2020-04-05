@@ -1,12 +1,18 @@
 <div  class="container">
-  <a class="btn btn-primary" role="button" (click)="editPublication()">Add</a>
+  <a class="btn btn-primary" role="button" (click)="addPublication()">Add</a>
   <div class="publication" *ngFor="let publication of publications">
-    <div class="image" *ngIf="publication.imagePath"><img src='{{publication.imagePath}}'></div>
-    <div class="details">
-      <a href="#" class="title">{{publication.title}} </a>
-      <div class="date"> Publié le : {{publication.publicationDate}}</div>
-      <div class="content">{{publication.content}}</div>
-      <div class="author"> auteur : <a href="#">{{publication.author.username}}</a></div>
+    <div class="content">
+      <div class="image" *ngIf="publication.imagePath"><img src='{{publication.imagePath}}'></div>
+      <div class="details">
+        <a href="#" class="title">{{publication.title}} </a>
+        <div class="date"> Publié le : {{publication.publicationDate}}</div>
+        <div class="content">{{publication.content}}</div>
+        <div class="author"> auteur : <a href="#">{{publication.author.username}}</a></div>
+      </div>
+    </div>
+    <div class="buttons">
+      <a class="btn" role="button" (click)="editPublication(publication.id)"><span class="oi oi-pencil"></span></a>
+      <a class="btn" role="button"><span class="oi oi-trash"></span></a>
     </div>
   </div>
 </div>

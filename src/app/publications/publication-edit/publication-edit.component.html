@@ -1,7 +1,7 @@
 <div class="publication-edit container">
   <h1>{{publication.id ? 'Éditer' : 'Ajouter'}} une publication</h1>
 
-  <form>
+  <form *ngIf="dataLoaded">
     <div class="row">
       <div class="form-group col-6">
         <label for="title">Titre</label>
