@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { TopbarComponent } from './components/topbar/topbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { PublicationsComponent } from './publications/publications.component';
+import { FormsModule } from '@angular/forms';
 
 import { Routes, RouterModule } from '@angular/router';
 import { PublicationEditComponent } from './publications/publication-edit/publication-edit.component';
@@ -24,6 +25,7 @@ const routes: Routes = [
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     RouterModule.forRoot(routes)
   ],
   providers: [],

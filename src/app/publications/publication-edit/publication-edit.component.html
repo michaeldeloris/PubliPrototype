@@ -1,1 +1,28 @@
-<p>publication-edit works!</p>
+<div class="publication-edit container">
+  <h1>{{publication.id ? 'Éditer' : 'Ajouter'}} une publication</h1>
+
+  <form>
+    <div class="row">
+      <div class="form-group col-6">
+        <label for="title">Titre</label>
+        <input type="text" class="form-control" id="title" [(ngModel)]="publication.title" name="title" >
+      </div>
+
+      <div class="form-group col-6">
+        <label for="imagePath">Lien vers image</label>
+        <input type="text" class="form-control" id="imagePath" [(ngModel)]="publication.imagePath" name="imagePath" >
+      </div>
+
+      <div class="form-group col-12">
+        <label for="content">Contenu</label>
+        <textarea type="text" class="form-control" id="content" rows="10" [(ngModel)]="publication.content" name="content" ></textarea>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <button type="button" class="btn btn-primary" (click)="onSubmit()" >Enregistrer</button>
+      </div>
+    </div>
+  </form>
+</div>

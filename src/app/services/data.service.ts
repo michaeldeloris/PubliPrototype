@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { User } from '../models/User';
 import { Message } from '../models/Message';
 import { Publication } from '../models/Publication';
+import { Observable, of } from 'rxjs';
+import { formatDate } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +13,20 @@ export class DataService {
   users: Array<User>;
   messages: Array<Message>;
   publications: Array<Publication>;
+
+  addPublication(newPublication: Publication): Observable<Publication> {
+    let id = 0;
+    for(let publication of this.publications) {
+      if(publication.id > id) {
+        id = publication.id;
+      }
+    }
+    newPublication.id = id + 1;
+    newPublication.publicationDate = formatDate(new Date(), 'dd/MM/yyyy', 'en-GB');
+    newPublication.author = this.users.find(user => user.id === 1);
+    this.publications.push(newPublication);
+    return of(newPublication);
+  }
 
   constructor() {
     this.users = new Array<User>();
