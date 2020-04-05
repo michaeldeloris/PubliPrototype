@@ -1,4 +1,5 @@
 <div  class="container">
+  <a class="btn btn-primary" role="button" (click)="editPublication()">Add</a>
   <div class="publication" *ngFor="let publication of publications">
     <div class="image" *ngIf="publication.imagePath"><img src='{{publication.imagePath}}'></div>
     <div class="details">

@@ -7,9 +7,11 @@ import { FooterComponent } from './components/footer/footer.component';
 import { PublicationsComponent } from './publications/publications.component';
 
 import { Routes, RouterModule } from '@angular/router';
+import { PublicationEditComponent } from './publications/publication-edit/publication-edit.component';
 
 const routes: Routes = [
-  {path: "", component: PublicationsComponent}
+  {path: "", component: PublicationsComponent},
+  {path: "publication/add", component: PublicationEditComponent}
 ];
 
 @NgModule({
@@ -17,7 +19,8 @@ const routes: Routes = [
     AppComponent,
     TopbarComponent,
     FooterComponent,
-    PublicationsComponent
+    PublicationsComponent,
+    PublicationEditComponent
   ],
   imports: [
     BrowserModule,
