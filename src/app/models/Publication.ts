@@ -14,7 +14,7 @@ export class Publication {
     return new Date(this.publicationDate);
   }
 
-  static fromHttp(publication: Publication) {
+  static fromHttp(publication: Publication): Publication {
     const newPublication = new Publication();
     newPublication.id = publication.id;
     newPublication.title = publication.title;
@@ -22,7 +22,11 @@ export class Publication {
     newPublication.content = publication.content;
     newPublication.imagePath = publication.imagePath;
     newPublication.author = User.fromHttp(publication.author);
-    newPublication.messages = Message.fromHttp(publication.messages);
+    newPublication.messages = new Array<Message>();
+    for(let message of publication.messages) {
+      newPublication.messages.push(Message.fromHttp(message));
+
+    }
     return newPublication;
   }
 }
