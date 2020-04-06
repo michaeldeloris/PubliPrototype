@@ -17,14 +17,7 @@ export class PublicationsComponent implements OnInit {
 
   ngOnInit(): void {
     this.dataService.getPublications().subscribe(
-      next => {
-        this.publications = new Array<Publication>();
-        for(let publication of next) {
-          console.log(publication);
-          console.log(Publication.fromHttp(publication));
-          this.publications.push(Publication.fromHttp(publication));
-        }
-      },
+      next => this.publications = next,
       error => alert(error.message)
     );
   }

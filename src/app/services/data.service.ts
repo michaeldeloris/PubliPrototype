@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Publication } from '../models/Publication';
 import { Observable, of } from 'rxjs';
+import {map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +11,16 @@ import { Observable, of } from 'rxjs';
 export class DataService {
 
   getPublications(): Observable<Array<Publication>> {
-    console.log(environment.restUrl + '/publications');
-    return this.http.get<Array<Publication>>(environment.restUrl + '/publications');
+    return this.http.get<Array<Publication>>(environment.restUrl + '/publications')
+      .pipe(
+        map( data => {
+          const publications = new Array<Publication>();
+          for(let publication of data) {
+            publications.push(Publication.fromHttp(publication));
+          }
+          return publications;
+        })
+      );
   }
 
   getPublication(id: number): Observable<Publication> {
