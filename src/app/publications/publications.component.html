@@ -1,4 +1,4 @@
-<div  class="container">
+<div  class="container publications">
   <a class="add_btn btn" role="button" (click)="addPublication()"><span class="oi oi-plus"></span></a>
   <div class="publication" *ngFor="let publication of publications">
     <div class="content">
@@ -16,5 +16,8 @@
       <a class="btn" role="button" (click)="editPublication(publication.id)"><span class="oi oi-pencil"></span></a>
       <a class="btn" role="button" (click)="deletePublication(publication.id)"><span class="oi oi-trash"></span></a>
     </div>
+  </div>
+  <div class="spinner-border spinner m-5" role="status" *ngIf="loadingData">
+    <span class="sr-only">Loading...</span>
   </div>
 </div>

@@ -12,12 +12,17 @@ export class PublicationsComponent implements OnInit {
 
   publications: Array<Publication>;
 
+  loadingData = true;
+
   constructor(private dataService: DataService,
               private router: Router) { }
 
   ngOnInit(): void {
     this.dataService.getPublications().subscribe(
-      next => this.publications = next,
+      next => {
+        this.publications = next;
+        this.loadingData = false;
+      },
       error => alert(error.message)
     );
   }
