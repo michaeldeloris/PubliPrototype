@@ -13,6 +13,7 @@ export class PublicationsComponent implements OnInit {
   publications: Array<Publication>;
 
   loadingData = true;
+  message = '';
 
   constructor(private dataService: DataService,
               private router: Router) { }
@@ -23,7 +24,9 @@ export class PublicationsComponent implements OnInit {
         this.publications = next;
         this.loadingData = false;
       },
-      error => alert(error.message)
+      error => {
+        this.message = 'Connexion interrompue avec le serveur.';
+      }
     );
   }
 
