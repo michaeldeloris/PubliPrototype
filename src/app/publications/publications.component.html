@@ -5,9 +5,11 @@
       <div class="image" *ngIf="publication.imagePath"><img src='{{publication.imagePath}}'></div>
       <div class="details">
         <a href="#" class="title">{{publication.title}} </a>
-        <div class="date"> Publié le : {{publication.publicationDate}}</div>
+        <div class="infos">
+          <div class="date"> Publié le {{publication.publicationDate | date : 'dd/MM/yyyy'}} à {{publication.publicationDate | date : 'hh:mm'}}</div>
+          <div class="author"> par <a href="#">{{publication.author.username}}</a></div>
+        </div>
         <div class="content">{{publication.content}}</div>
-        <div class="author"> auteur : <a href="#">{{publication.author.username}}</a></div>
       </div>
     </div>
     <div class="buttons">
