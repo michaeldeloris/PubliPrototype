@@ -23,5 +23,6 @@ export class Publication {
     newPublication.imagePath = publication.imagePath;
     newPublication.author = User.fromHttp(publication.author);
     newPublication.messages = Message.fromHttp(publication.messages);
+    return newPublication;
   }
 }
