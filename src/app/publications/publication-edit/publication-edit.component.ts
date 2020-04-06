@@ -1,18 +1,20 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, OnDestroy } from '@angular/core';
 import { Publication } from 'src/app/models/Publication';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-publication-edit',
   templateUrl: './publication-edit.component.html',
   styleUrls: ['./publication-edit.component.less']
 })
-export class PublicationEditComponent implements OnInit {
+export class PublicationEditComponent implements OnInit, OnDestroy {
 
   publication: Publication;
 
-  dataLoaded = false;
+  dataLoadedEvent = new EventEmitter();
+  dataLoadedSubscription = new Subscription();
 
   isTitleValid = false;
   isContentValid= false;
@@ -22,22 +24,35 @@ export class PublicationEditComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit(): void {
+    this.loadData();
+    this.dataLoadedSubscription = this.dataLoadedEvent.subscribe(
+      next => this.initializeForm()
+    )
+  }
+
+  ngOnDestroy() {
+    this.dataLoadedSubscription.unsubscribe();
+  }
+
+  loadData() {
     const id = this.route.snapshot.queryParams['id'];
     if(id) {
-      this.dataService.getPublication(+id).subscribe(
+      this.dataService.getPublications().subscribe(
         next => {
-          this.publication = next;
-          this.dataLoaded = true;
+          for(let publication of next) {
+            if(publication.id === +id) {
+              this.publication = publication;
+              this.dataLoadedEvent.emit();
+            }
+          }
         }
         );
       } else {
         this.publication = new Publication();
-        this.dataLoaded = true;
     }
-    this.initilizeForm();
   }
 
-  initilizeForm() {
+  initializeForm() {
     this.checkIfTitleIsValid();
     this.checkIfContentIsValid();
   }
@@ -60,7 +75,7 @@ export class PublicationEditComponent implements OnInit {
 
   onSubmit() {
     if(this.publication.id != null) {
-      this.dataService.editPublication(this.publication).subscribe(
+      this.dataService.updatePublication(this.publication).subscribe(
         next => this.router.navigate([''])
       )
     } else {
