@@ -14,18 +14,29 @@ export class PublicationsComponent implements OnInit {
 
   loadingData = true;
   message = '';
+  reloadAttemps = 0;
 
   constructor(private dataService: DataService,
               private router: Router) { }
 
   ngOnInit(): void {
+    this.loadData();
+  }
+
+  loadData() {
     this.dataService.getPublications().subscribe(
       next => {
         this.publications = next;
         this.loadingData = false;
       },
       error => {
-        this.message = 'Connexion interrompue avec le serveur.';
+        this.reloadAttemps++;
+        if(this.reloadAttemps <= 10) {
+          this.message = 'Connexion interrompue avec le serveur. Tentative de reconnexion en cours...';
+          this.loadData();
+        } else {
+          this.message = 'Les tentatives de connexion ont échouées. Veuillez contacter un administrateur.';
+        }
       }
     );
   }

@@ -4,7 +4,7 @@
   <div class="spinner-border spinner m-5" role="status" *ngIf="loadingData && !message">
     <span class="sr-only">Loading...</span>
   </div>
-  <h3 *ngIf="publications.length === 0">Pas de publication ! Soyez le premier à poster !</h3>
+  <h3 *ngIf="publications?.length === 0">Pas de publication ! Soyez le premier à poster !</h3>
   <div class="publication" *ngFor="let publication of publications">
     <div class="content">
       <div class="image" *ngIf="publication.imagePath"><img src='{{publication.imagePath}}'></div>
