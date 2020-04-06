@@ -23,20 +23,16 @@ export class DataService {
       );
   }
 
-  getPublication(id: number): Observable<Publication> {
-    return of(null);
-  }
-
   addPublication(newPublication: Publication): Observable<Publication> {
     return of(null);
   }
 
-  editPublication(publication: Publication): Observable<Publication> {
-    return of(null);
+  updatePublication(publication: Publication): Observable<Publication> {
+    return this.http.put<Publication>(environment.restUrl + '/publications', publication);
   }
 
   deletePublication(id: number): Observable<any> {
-    return of(null);
+    return this.http.delete(environment.restUrl + '/publications/' + id);
   }
 
   constructor(private http: HttpClient) { }
