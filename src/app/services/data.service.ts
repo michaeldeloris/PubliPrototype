@@ -24,7 +24,7 @@ export class DataService {
   }
 
   addPublication(newPublication: Publication): Observable<Publication> {
-    return of(null);
+    return this.http.post<Publication>(environment.restUrl + '/publications', newPublication);
   }
 
   updatePublication(publication: Publication): Observable<Publication> {
