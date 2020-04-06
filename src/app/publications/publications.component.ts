@@ -16,7 +16,10 @@ export class PublicationsComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit(): void {
-    this.publications = this.dataService.publications;
+    this.dataService.getPublications().subscribe(
+      next => this.publications = next,
+      error => alert(error.message)
+    );
   }
 
   addPublication() {

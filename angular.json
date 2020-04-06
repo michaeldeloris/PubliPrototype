@@ -39,6 +39,14 @@
             ]
           },
           "configurations": {
+            "local": {
+              "fileReplacements": [
+                {
+                  "replace": "src/app/services/data.service.ts",
+                  "with": "src/app/services/data.service.local.ts"
+                }
+              ]
+            },
             "production": {
               "fileReplacements": [
                 {
@@ -77,6 +85,9 @@
           "configurations": {
             "production": {
               "browserTarget": "PubliProtoClient:build:production"
+            },
+            "local": {
+              "browserTarget": "PubliProtoClient:build:local"
             }
           }
         },
