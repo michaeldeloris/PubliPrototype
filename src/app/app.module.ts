@@ -7,6 +7,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import {HttpClientModule} from '@angular/common/http';
 import { PublicationsComponent } from './publications/publications.component';
 import { FormsModule } from '@angular/forms';
+import { AngularEditorModule } from '@kolkov/angular-editor';
 
 import { Routes, RouterModule } from '@angular/router';
 import { PublicationEditComponent } from './publications/publication-edit/publication-edit.component';
@@ -29,6 +30,7 @@ const routes: Routes = [
     BrowserModule,
     FormsModule,
     HttpClientModule,
+    AngularEditorModule,
     RouterModule.forRoot(routes)
   ],
   providers: [],
