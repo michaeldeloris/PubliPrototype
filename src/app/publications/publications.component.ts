@@ -41,6 +41,10 @@ export class PublicationsComponent implements OnInit {
     );
   }
 
+  accessPublication(id: number) {
+    this.router.navigate(['publication'], {queryParams: {id}});
+  }
+
   addPublication() {
     this.router.navigate(['publication', 'add']);
   }
