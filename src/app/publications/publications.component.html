@@ -14,7 +14,7 @@
           <div class="date"> Publié le {{publication.publicationDate | date : 'dd/MM/yyyy'}} à {{publication.publicationDate | date : 'hh:mm'}}</div>
           <div class="author"> par <a href="#">{{publication.author.username}}</a></div>
         </div>
-        <div class="content">{{publication.content}}</div>
+        <div class="content" [innerHTML]="publication.content"></div>
       </div>
     </div>
     <div class="buttons">
