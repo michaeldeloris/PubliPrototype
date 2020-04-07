@@ -1,8 +1,11 @@
+import { environment } from './../../../environments/environment';
 import { Component, OnInit, Input, EventEmitter, OnDestroy } from '@angular/core';
 import { Publication } from 'src/app/models/Publication';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';
 import { Subscription } from 'rxjs';
+import { AngularEditorConfig } from '@kolkov/angular-editor';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-publication-edit',
@@ -19,15 +22,23 @@ export class PublicationEditComponent implements OnInit, OnDestroy {
   isTitleValid = false;
   isContentValid= false;
 
+  editorConfig: AngularEditorConfig = {
+    editable: true,
+    minHeight: '250px',
+    uploadUrl: environment.restUrl + '/publications/wysiwyg/upload-image',
+  };
+
   constructor(private dataService: DataService,
               private route: ActivatedRoute,
-              private router: Router) { }
+              private router: Router,
+              private http: HttpClient) { }
 
   ngOnInit(): void {
     this.loadData();
     this.dataLoadedSubscription = this.dataLoadedEvent.subscribe(
       next => this.initializeForm()
     )
+    //console.log(this.http.put<Object>(environment.restUrl + '/publications/wysiwyg/upload-image', new Image()));
   }
 
   ngOnDestroy() {
@@ -68,6 +79,7 @@ export class PublicationEditComponent implements OnInit, OnDestroy {
   checkIfContentIsValid() {
     if(this.publication.content) {
       this.isContentValid = this.publication.content.trim().length > 0;
+      console.log(typeof this.publication.content)
     } else {
       this.isContentValid = false;
     }
