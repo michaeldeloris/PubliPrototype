@@ -23,6 +23,10 @@ export class DataService {
       );
   }
 
+  getPublication(id: number): Observable<Publication> {
+    return this.http.get<Publication>(environment.restUrl + '/publications/' + id);
+  }
+
   addPublication(newPublication: Publication): Observable<Publication> {
     return this.http.post<Publication>(environment.restUrl + '/publications', newPublication);
   }
