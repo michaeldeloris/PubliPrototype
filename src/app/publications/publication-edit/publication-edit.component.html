@@ -3,14 +3,14 @@
 
   <form>
     <div class="row">
-      <div class="form-group col-6">
+      <div class="form-group col-md-6">
         <label for="title">Titre</label>
         <input type="text" class="form-control" id="title" [(ngModel)]="publication.title" name="title" required #title="ngModel" (change)="checkIfTitleIsValid()">
         <div *ngIf="title.touched && title.invalid" class="alert alert-danger">Titre requis</div>
         <div *ngIf="!isTitleValid && title.touched" class="alert alert-danger">Titre invalide</div>
       </div>
 
-      <div class="form-group col-6">
+      <div class="form-group col-md-6">
         <label for="imagePath">Lien vers image</label>
         <input type="text" class="form-control" id="imagePath" [(ngModel)]="publication.imagePath" name="imagePath" >
       </div>
