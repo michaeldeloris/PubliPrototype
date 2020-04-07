@@ -11,9 +11,11 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
 
 import { Routes, RouterModule } from '@angular/router';
 import { PublicationEditComponent } from './publications/publication-edit/publication-edit.component';
+import { PublicationDetailsComponent } from './publications/publication-details/publication-details.component';
 
 const routes: Routes = [
   {path: "", component: PublicationsComponent},
+  {path: "publication", component: PublicationDetailsComponent},
   {path: "publication/add", component: PublicationEditComponent},
   {path: "publication/edit", component: PublicationEditComponent}
 ];
@@ -24,7 +26,8 @@ const routes: Routes = [
     TopbarComponent,
     FooterComponent,
     PublicationsComponent,
-    PublicationEditComponent
+    PublicationEditComponent,
+    PublicationDetailsComponent
   ],
   imports: [
     BrowserModule,
