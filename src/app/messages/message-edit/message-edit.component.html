@@ -1,0 +1,11 @@
+<label for="title">Votre message :</label>
+<textarea rows="4" type="text" class="form-control" id="content" [(ngModel)]="message.content" name="content" required #content="ngModel"
+          (ngModelChange)="checkIfContentIsValid()"></textarea>
+<div *ngIf="content.touched && content.invalid" class="alert alert-danger">Message requis</div>
+<div *ngIf="!isContentValid && content.touched" class="alert alert-danger">Message invalide</div>
+
+<div class="row">
+  <div class="col">
+    <button type="button" class="btn btn-primary" (click)="onSubmit()" [disabled]="!isContentValid" >Enregistrer</button>
+  </div>
+</div>
