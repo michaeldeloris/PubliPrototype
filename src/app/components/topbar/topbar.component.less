@@ -1,4 +1,5 @@
 .topbar .container {
+  position: relative;
   .row {
     align-items: center;
     .logo {
@@ -11,20 +12,20 @@
     .login, .register {
       display: none;
     }
-    .dropdown-toggle{
-      position: absolute;
-      right: 10px;
-      width: 50px;
-      top: 15px;
-      &:focus {
-        outline: none;
-      }
-      &::after {
-        content: none;
-      }
-    }
     .buttons{
       display: none;
+    }
+  }
+  .dropdown-toggle{
+    position: absolute;
+    right: 10px;
+    width: 50px;
+    top: 15px;
+    &:focus {
+      outline: none;
+    }
+    &::after {
+      content: none;
     }
   }
 }
