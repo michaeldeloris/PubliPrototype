@@ -3,7 +3,7 @@
   <div class="bg-danger p-5" *ngIf="message">{{message}}</div>
   <h1 class="title">{{publication?.title}}</h1>
   <div class="infos">
-    <div class="date" *ngIf="publication">Publié le {{publication?.publicationDate | date : 'dd/MM/yyyy à hh:mm:ss'}}</div>
+    <div class="date" *ngIf="publication">Publié le {{publication?.publicationDate | date : 'dd/MM/yyyy à H:mm:ss'}}</div>
     <div class="author" *ngIf="publication">par {{publication?.author.username}}</div>
   </div>
   <div class="content" [innerHTML]='publication?.content'></div>
@@ -15,7 +15,7 @@
     <div class="message" *ngFor="let message of publication?.messages">
       <div class="infos">
         <div class="author">De {{message.author.username}}</div>
-        <div class="date">le {{message.publicationDate | date : 'dd/MM/yyyy à hh:mm:ss'}}</div>
+        <div class="date">le {{message.publicationDate | date : 'dd/MM/yyyy à H:mm:ss'}}</div>
       </div>
       <div class="message-content">{{message.content}}</div>
     </div>
