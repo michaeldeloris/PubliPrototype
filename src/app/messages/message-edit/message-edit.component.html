@@ -1,4 +1,5 @@
 <label for="title">Votre message :</label>
+<div class="bg-danger p-5" *ngIf="statusMessage">{{statusMessage}}</div>
 <textarea rows="4" type="text" class="form-control" id="content" [(ngModel)]="message.content" name="content" required #content="ngModel"
           (ngModelChange)="checkIfContentIsValid()"></textarea>
 <div *ngIf="content.touched && content.invalid" class="alert alert-danger">Message requis</div>

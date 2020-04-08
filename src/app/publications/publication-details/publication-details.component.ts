@@ -29,7 +29,6 @@ export class PublicationDetailsComponent implements OnInit {
         error => this.message = "Cette publication n'existe pas !"
       );
     }
-
   }
 
 }

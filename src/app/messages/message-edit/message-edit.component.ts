@@ -55,7 +55,7 @@ export class MessageEditComponent implements OnInit {
           error => this.statusMessage = 'Impossible d\'enregistrer le nouveau message... Réessayez plus tard.'
         );
       },
-      error => this.statusMessage = 'cannot get users'
+      error => this.statusMessage = 'Communication avec le serveur interrompue'
     )
   }
 }
