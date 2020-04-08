@@ -40,8 +40,12 @@
         }
         .infos {
           display: flex;
+          flex-direction: column;
           color: grey;
           font-size: 14px;
+          .label {
+            display: none;
+          }
           .date {
             margin-right: 3px;
           }
@@ -59,7 +63,20 @@
 }
 
 @media (min-width: 768px) {
-  .details .content {
-    display: contents !important;
+  .details {
+    .infos {
+      flex-direction: row !important;
+      .date, .author {
+        display: flex;
+      }
+      .label {
+        display: flex !important;
+        margin-right: 5px !important;
+      }
+    }
+    .content {
+      display: contents !important;
+    }
   }
+
 }

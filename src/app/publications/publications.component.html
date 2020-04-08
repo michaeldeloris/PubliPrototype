@@ -11,8 +11,8 @@
       <div class="details">
         <div class="title link" (click)="accessPublication(publication.id)">{{publication.title}} </div>
         <div class="infos">
-          <div class="date"> Publié le {{publication.publicationDate | date : 'dd/MM/yyyy'}} à {{publication.publicationDate | date : 'hh:mm'}}</div>
-          <div class="author"> par <div class="link">{{publication.author.username}}</div></div>
+          <div class="date"> <div class="label">Publié le</div>{{publication.publicationDate | date : 'dd/MM/yyyy à hh:mm'}}</div>
+          <div class="author"> <div class="label">par</div><div class="link">{{publication.author.username}}</div></div>
         </div>
         <div class="content" [innerHTML]="publication.content"></div>
       </div>
