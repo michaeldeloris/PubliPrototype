@@ -1,14 +1,21 @@
 .topbar .container {
-  margin-top: 15px;
-  margin-bottom: 15px;
-  .login, .register {
-    display: none;
-  }
-  .buttons{
-    display:flex;
-    justify-content: flex-end;
+  .row {
+    align-items: center;
+    .logo {
+      width: 100%;
+      text-align: center;
+      img {
+        height: 140px;
+      }
+    }
+    .login, .register {
+      display: none;
+    }
     .dropdown-toggle{
-      width: 17px;
+      position: absolute;
+      right: 10px;
+      width: 50px;
+      top: 15px;
       &:focus {
         outline: none;
       }
@@ -16,11 +23,20 @@
         content: none;
       }
     }
+    .buttons{
+      display: none;
+    }
   }
 }
 
 @media (min-width: 768px) {
+  .logo {
+    width: inherit !important;
+    cursor: pointer;
+  }
   .buttons {
+    display: flex;
+    height: 38px;
     justify-content: space-around !important;
     .login, .register {
       display: block !important;
