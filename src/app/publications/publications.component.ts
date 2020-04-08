@@ -28,6 +28,7 @@ export class PublicationsComponent implements OnInit {
       next => {
         this.publications = next;
         this.loadingData = false;
+        this.message = '';
       },
       error => {
         this.reloadAttemps++;
