@@ -15,23 +15,30 @@
     }
   }
   .publication {
+    margin-top: 35px;
+    position: relative;
     display: flex;
     border: 1px solid black;
     border-radius: 15px;
     margin-bottom: 15px;
     padding: 5px 10px 5px 10px;
     .content {
-      display:flex;
-      width: 95%;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
       .image {
-        width: auto;
-        max-width: 200px;
         margin-right: 15px;
+        width: 100%;
+        max-width: inherit;
+        max-height: 150px;
+        text-align: center;
         img {
           max-width: 100%;
+          max-height: 150px;
         }
       }
       .details {
+        margin-top: 5px;
         .title {
           display: contents;
           width: auto;
@@ -56,14 +63,27 @@
       }
     }
     .buttons {
+      right: 0;
+      top: -35px;
+      position: absolute;
       display: flex;
-      flex-direction: column;
     }
   }
 }
 
 @media (min-width: 768px) {
+  .content {
+    flex-direction: row !important;
+    .image {
+      width: auto !important;
+      max-height: 175px !important;
+      img {
+        max-height: 175px !important;
+      }
+    }
+  }
   .details {
+    margin-top: 0 !important;
     .infos {
       flex-direction: row !important;
       .date, .author {
