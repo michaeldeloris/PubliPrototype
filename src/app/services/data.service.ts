@@ -4,11 +4,15 @@ import { Injectable } from '@angular/core';
 import { Publication } from '../models/Publication';
 import { Observable, of } from 'rxjs';
 import {map} from 'rxjs/operators';
+import { Message } from '../models/Message';
+import { User } from '../models/User';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
+
+  // PUBLICATIONS
 
   getPublications(): Observable<Array<Publication>> {
     return this.http.get<Array<Publication>>(environment.restUrl + '/publications')
@@ -38,6 +42,28 @@ export class DataService {
   deletePublication(id: number): Observable<any> {
     return this.http.delete(environment.restUrl + '/publications/' + id);
   }
+
+  // MESSAGES
+
+  addMessage(publicationId: number, newMessage: Message): Observable<Publication> {
+    return this.http.post<Publication>(environment.restUrl + '/messages/' + publicationId, newMessage);
+  }
+
+  //USERS
+
+  getUsers(): Observable<Array<User>> {
+    return this.http.get<Array<User>>(environment.restUrl + '/users')
+      .pipe(
+        map( data => {
+          const users = new Array<User>();
+          for(let user of data) {
+            users.push(User.fromHttp(user));
+          }
+          return users;
+        })
+      );
+  }
+
 
   constructor(private http: HttpClient) { }
 }

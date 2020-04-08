@@ -25,6 +25,10 @@ export class MessageEditComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit(): void {
+    this.loadData();
+  }
+
+  loadData() {
     this.message = new Message();
     this.checkIfContentIsValid();
   }
@@ -39,14 +43,19 @@ export class MessageEditComponent implements OnInit {
 
   onSubmit() {
     const fakeUser = new User();
-    fakeUser.id = 666;
-    fakeUser.username = 'fake_user';
-    this.message.author = fakeUser;
-    this.message.publicationDate = new Date().toString();
-    this.publication.messages.push(this.message);
-    this.dataService.updatePublication(this.publication).subscribe(
-      next => this.router.navigate(['publications'], {queryParams: {id : next.id}}),
-      error => this.statusMessage = 'Impossible d\'enregistrer le nouveau message... Réessayez plus tard.'
-    );
+    //TODO : ADD RIGHT USER
+    this.dataService.getUsers().subscribe(
+      next =>  {
+        this.message.author = next.find(user => user.username === 'michael')
+        this.message.publicationDate = new Date();
+        this.dataService.addMessage(this.publication.id, this.message).subscribe(
+          next => {
+            window.location.reload();
+          },
+          error => this.statusMessage = 'Impossible d\'enregistrer le nouveau message... Réessayez plus tard.'
+        );
+      },
+      error => this.statusMessage = 'cannot get users'
+    )
   }
 }
