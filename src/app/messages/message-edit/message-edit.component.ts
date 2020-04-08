@@ -49,9 +49,7 @@ export class MessageEditComponent implements OnInit {
         this.message.author = next.find(user => user.username === 'michael')
         this.message.publicationDate = new Date();
         this.dataService.addMessage(this.publication.id, this.message).subscribe(
-          next => {
-            window.location.reload();
-          },
+          next => window.location.reload(),
           error => this.statusMessage = 'Impossible d\'enregistrer le nouveau message... Réessayez plus tard.'
         );
       },

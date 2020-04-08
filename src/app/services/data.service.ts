@@ -46,7 +46,9 @@ export class DataService {
   // MESSAGES
 
   addMessage(publicationId: number, newMessage: Message): Observable<Publication> {
-    return this.http.post<Publication>(environment.restUrl + '/messages/' + publicationId, newMessage);
+    return this.http.post<Publication>(environment.restUrl + '/messages/' + publicationId, newMessage).pipe(
+      map( data => Publication.fromHttp(data))
+    );
   }
 
   //USERS
