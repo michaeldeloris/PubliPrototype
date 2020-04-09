@@ -15,6 +15,7 @@ import { PublicationDetailsComponent } from './publications/publication-details/
 import { MessageEditComponent } from './messages/message-edit/message-edit.component';
 import { UsersComponent } from './users/users.component';
 import { UserEditComponent } from './users/user-edit/user-edit.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   {path: "", component: PublicationsComponent},
@@ -22,7 +23,8 @@ const routes: Routes = [
   {path: "publication/add", component: PublicationEditComponent},
   {path: "publication/edit", component: PublicationEditComponent},
   {path: "users", component: UsersComponent},
-  {path: "users/edit", component: UserEditComponent}
+  {path: "users/edit", component: UserEditComponent},
+  {path: "login", component: LoginComponent}
 ];
 
 @NgModule({
@@ -35,7 +37,8 @@ const routes: Routes = [
     PublicationDetailsComponent,
     MessageEditComponent,
     UsersComponent,
-    UserEditComponent
+    UserEditComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
