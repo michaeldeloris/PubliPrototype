@@ -66,6 +66,13 @@ export class DataService {
       );
   }
 
+  getUser(id: number): Observable<User> {
+    return this.http.get<User>(environment.restUrl + '/users/' + id)
+      .pipe(
+        map(data => User.fromHttp(data))
+      );
+  }
+
 
   constructor(private http: HttpClient) { }
 }
