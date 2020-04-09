@@ -16,13 +16,14 @@ import { MessageEditComponent } from './messages/message-edit/message-edit.compo
 import { UsersComponent } from './users/users.component';
 import { UserEditComponent } from './users/user-edit/user-edit.component';
 import { LoginComponent } from './login/login.component';
+import { AuthRouteGuardService } from './services/auth-route-guard.service';
 
 const routes: Routes = [
   {path: "", component: PublicationsComponent},
   {path: "publication", component: PublicationDetailsComponent},
-  {path: "publication/add", component: PublicationEditComponent},
-  {path: "publication/edit", component: PublicationEditComponent},
-  {path: "users", component: UsersComponent},
+  {path: "publication/add", component: PublicationEditComponent, canActivate : [AuthRouteGuardService]},
+  {path: "publication/edit", component: PublicationEditComponent, canActivate : [AuthRouteGuardService]},
+  {path: "users", component: UsersComponent, canActivate : [AuthRouteGuardService]},
   {path: "users/edit", component: UserEditComponent},
   {path: "login", component: LoginComponent}
 ];
