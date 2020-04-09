@@ -14,13 +14,15 @@ import { PublicationEditComponent } from './publications/publication-edit/public
 import { PublicationDetailsComponent } from './publications/publication-details/publication-details.component';
 import { MessageEditComponent } from './messages/message-edit/message-edit.component';
 import { UsersComponent } from './users/users.component';
+import { UserEditComponent } from './users/user-edit/user-edit.component';
 
 const routes: Routes = [
   {path: "", component: PublicationsComponent},
   {path: "publication", component: PublicationDetailsComponent},
   {path: "publication/add", component: PublicationEditComponent},
   {path: "publication/edit", component: PublicationEditComponent},
-  {path: "users", component: UsersComponent}
+  {path: "users", component: UsersComponent},
+  {path: "users/edit", component: UserEditComponent}
 ];
 
 @NgModule({
@@ -32,7 +34,8 @@ const routes: Routes = [
     PublicationEditComponent,
     PublicationDetailsComponent,
     MessageEditComponent,
-    UsersComponent
+    UsersComponent,
+    UserEditComponent
   ],
   imports: [
     BrowserModule,
