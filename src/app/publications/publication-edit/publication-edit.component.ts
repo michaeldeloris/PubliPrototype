@@ -4,7 +4,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';
 import { Subscription} from 'rxjs';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
-import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-publication-edit',
@@ -31,8 +30,7 @@ export class PublicationEditComponent implements OnInit, OnDestroy {
 
   constructor(private dataService: DataService,
               private route: ActivatedRoute,
-              private router: Router,
-              private http: HttpClient) { }
+              private router: Router) { }
 
   ngOnInit(): void {
     this.loadData();
@@ -48,14 +46,10 @@ export class PublicationEditComponent implements OnInit, OnDestroy {
   loadData() {
     const id = this.route.snapshot.queryParams['id'];
     if(id) {
-      this.dataService.getPublications().subscribe(
+      this.dataService.getPublication(+id).subscribe(
         next => {
-          for(let publication of next) {
-            if(publication.id === +id) {
-              this.publication = publication;
+              this.publication = next;
               this.dataLoadedEvent.emit();
-            }
-          }
         }
         );
       } else {
