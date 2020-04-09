@@ -14,6 +14,8 @@ export class PublicationDetailsComponent implements OnInit {
 
   message = '';
 
+  loadingData = true;
+
   constructor(private route: ActivatedRoute,
               private dataService: DataService) { }
 
@@ -25,7 +27,11 @@ export class PublicationDetailsComponent implements OnInit {
     const id = this.route.snapshot.queryParams['id'];
     if(id) {
       this.dataService.getPublication(+id).subscribe(
-        next => this.publication = next,
+        next => {
+          this.publication = next;
+          this.loadingData = false;
+          this.message = '';
+        },
         error => this.message = "Cette publication n'existe pas !"
       );
     }

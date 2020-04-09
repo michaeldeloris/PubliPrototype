@@ -1,6 +1,9 @@
 <div class="container" >
 
   <div class="bg-danger p-5" *ngIf="message">{{message}}</div>
+  <div class="spinner-border spinner m-5" role="status" *ngIf="loadingData">
+    <span class="sr-only">Loading...</span>
+  </div>
   <h1 class="title">{{publication?.title}}</h1>
   <div class="infos">
     <div class="date" *ngIf="publication">Publié le {{publication?.publicationDate | date : 'dd/MM/yyyy à H:mm:ss'}}</div>
