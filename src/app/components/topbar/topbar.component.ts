@@ -17,4 +17,8 @@ export class TopbarComponent implements OnInit {
     this.router.navigate(['']);
   }
 
+  accesUsersEdit() {
+    this.router.navigate(['users', 'edit']);
+  }
+
 }
