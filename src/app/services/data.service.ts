@@ -1,8 +1,8 @@
 import { environment } from './../../environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Publication } from '../models/Publication';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import {map} from 'rxjs/operators';
 import { Message } from '../models/Message';
 import { User } from '../models/User';
@@ -73,6 +73,11 @@ export class DataService {
       );
   }
 
+  validateUser(username: string, password: string): Observable<string> {
+    const authData = btoa(`${username}:${password}`);
+    const headers = new HttpHeaders().append('Authorization', 'Basic ' + authData);
+    return this.http.get<string>(environment.restUrl + '/basicAuth/validate', {headers: headers});
+  }
 
   constructor(private http: HttpClient) { }
 }
