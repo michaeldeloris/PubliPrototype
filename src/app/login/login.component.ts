@@ -41,4 +41,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   onSubmit() {
     this.authService.authenticate(this.username, this.password)
   }
+
+  accesUsersEdit() {
+    this.route.navigate(['users', 'edit']);
+  }
 }
