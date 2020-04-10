@@ -1,5 +1,5 @@
 <div  class="container publications">
-  <a class="add_btn btn" role="button" (click)="addPublication()"><span class="oi oi-plus"></span></a>
+  <div class="add_btn btn btn-primary col-md-6" role="button" (click)="addPublication()">Nouvelle publication</div>
   <div class="bg-danger p-5" *ngIf="message">{{message}}</div>
   <div class="spinner-border spinner m-5" role="status" *ngIf="loadingData && !message">
     <span class="sr-only">Loading...</span>
