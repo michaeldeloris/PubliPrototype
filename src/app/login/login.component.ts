@@ -11,6 +11,8 @@ import { Subscription } from 'rxjs';
 export class LoginComponent implements OnInit, OnDestroy {
 
   message = '';
+  infoMessage = '';
+
   username: string;
   password: string;
 
@@ -21,6 +23,11 @@ export class LoginComponent implements OnInit, OnDestroy {
               private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+    const comesFromRegisterPage = this.activatedRoute.snapshot.queryParams['registered'];
+    if(comesFromRegisterPage) {
+      this.infoMessage = 'Utilisateur créé avec succès.';
+    }
+
     this.subscription = this.authService.authenticationResultEvent.subscribe(
       result => {
         if(result) {

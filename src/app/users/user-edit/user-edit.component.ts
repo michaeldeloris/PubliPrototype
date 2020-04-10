@@ -1,4 +1,4 @@
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from './../../services/data.service';
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/User';
@@ -23,7 +23,8 @@ export class UserEditComponent implements OnInit {
   doesPasswordsMatch = false;
 
   constructor(private dataService: DataService,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit(): void {
     const id = this.route.snapshot.queryParams['id'];
@@ -69,12 +70,12 @@ export class UserEditComponent implements OnInit {
       this.checkIfPasswordsMatch();
       if(this.doesPasswordsMatch) {
         this.dataService.addUser(this.user, this.password).subscribe(
-
+          next => this.router.navigate(['login'], {queryParams: {registered: 'registered'}}),
+          error => console.log(error.status)
         );
       } else {
         this.message = 'Les mots de passe ne correspondent pas';
       }
-
     }
   }
 
