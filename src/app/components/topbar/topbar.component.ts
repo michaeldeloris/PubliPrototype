@@ -45,7 +45,6 @@ export class TopbarComponent implements OnInit, OnDestroy {
 
   logout() {
     this.authService.logout();
-    this.router.navigate(['']);
   }
 
 }
