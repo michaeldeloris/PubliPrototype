@@ -1,9 +1,11 @@
+import { Subscription } from 'rxjs';
 import { Message } from './../../models/Message';
 import { DataService } from 'src/app/services/data.service';
 import { Publication } from './../../models/Publication';
 import { Component, OnInit, Input } from '@angular/core';
 import { User } from 'src/app/models/User';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-message-edit',
@@ -21,11 +23,20 @@ export class MessageEditComponent implements OnInit {
 
   isContentValid = false;
 
+  isLogged = false;
+
+  subscription: Subscription;
+
   constructor(private dataService: DataService,
-              private router: Router) { }
+              private router: Router,
+              private authService: AuthService) { }
 
   ngOnInit(): void {
     this.loadData();
+    this.subscription = this.authService.authenticationResultEvent.subscribe(
+      next => this.isLogged = this.authService.isAuthenticated
+    )
+    this.authService.checkIfAlreadyAuthenticated();
   }
 
   loadData() {
@@ -54,5 +65,9 @@ export class MessageEditComponent implements OnInit {
       },
       error => this.statusMessage = 'Communication avec le serveur interrompue'
     )
+  }
+
+  accessLogin() {
+    this.router.navigate(['/login']);
   }
 }
