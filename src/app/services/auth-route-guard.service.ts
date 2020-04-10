@@ -11,8 +11,13 @@ export class AuthRouteGuardService implements CanActivate {
               private router: Router) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+    const roles = route.data['roles'] as Array<string>;
     if(!this.authService.isAuthenticated) {
       this.router.navigate(['login'], {queryParams: {requested : state.url}});
+    } else if(roles) {
+      if(!roles.includes(this.authService.role)) {
+        this.router.navigate(['login'], {queryParams: {requested : state.url}});
+      }
     }
     return this.authService.isAuthenticated;
   }

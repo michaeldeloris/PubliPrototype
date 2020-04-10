@@ -23,7 +23,8 @@ const routes: Routes = [
   {path: "publication", component: PublicationDetailsComponent},
   {path: "publication/add", component: PublicationEditComponent, canActivate : [AuthRouteGuardService]},
   {path: "publication/edit", component: PublicationEditComponent, canActivate : [AuthRouteGuardService]},
-  {path: "users", component: UsersComponent, canActivate : [AuthRouteGuardService]},
+  {path: "users", component: UsersComponent, canActivate : [AuthRouteGuardService],
+                                             data: {roles: ['ADMIN']}},
   {path: "users/edit", component: UserEditComponent},
   {path: "login", component: LoginComponent}
 ];
