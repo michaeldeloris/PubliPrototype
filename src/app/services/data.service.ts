@@ -75,7 +75,11 @@ export class DataService {
 
   addUser(newUser: User, password: string) : Observable<User> {
     const fullUser = {id: newUser.id, username: newUser.username, password: password};
-    return this.http.post<User>(environment.restUrl + '/api/users', fullUser , {withCredentials : true});
+    return this.http.post<User>(environment.restUrl + '/api/users', fullUser, {withCredentials : true});
+  }
+
+  deleteUser(id: number): Observable<any> {
+    return this.http.delete(environment.restUrl + '/api/users/'+ id, {withCredentials : true});
   }
 
   validateUser(username: string, password: string): Observable<{result: string}> {
