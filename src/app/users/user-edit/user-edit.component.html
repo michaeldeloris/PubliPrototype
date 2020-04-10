@@ -1,3 +1,33 @@
 <div class="publication-edit container">
   <h1>{{user?.id ? 'Éditer' : 'Ajouter'}} un utilisateur</h1>
+
+  <div *ngIf="message" class="alert alert-danger">{{message}}</div>
+
+  <form>
+    <div class="row">
+      <div class="form-group col-md-6">
+        <label for="username">Nom d'utilisateur</label>
+        <input type="text" class="form-control" id="username" [(ngModel)]="user.username" name="username" required #username="ngModel" (ngModelChange)="checkIfUsernameIsValid()">
+        <div *ngIf="username.touched && username.invalid" class="alert alert-danger">Nom d'utilisateur requis</div>
+        <div *ngIf="!isUsernameValid && username.touched" class="alert alert-danger">Nom d'utilisateur invalide</div>
+
+        <label for="password">Mot de passe</label>
+        <input type="password" class="form-control" id="password" [(ngModel)]="password" name="password" required #pass1="ngModel" (ngModelChange)="checkIfPasswordIsValid()">
+        <div *ngIf="pass1.touched && pass1.invalid" class="alert alert-danger">Mot de passe requis</div>
+        <div *ngIf="!isPasswordValid && pass1.touched" class="alert alert-danger">Mot de passe invalide</div>
+
+        <label for="password2">Confirmation du mot de passe</label>
+        <input type="password" class="form-control" id="password2" [(ngModel)]="password2" name="password2" required #pass2="ngModel" (ngModelChange)="checkIfPasswordConfirmIsValid()">
+        <div *ngIf="pass2.touched && pass2.invalid" class="alert alert-danger">Confimation de mot de passe requise</div>
+        <div *ngIf="!isPassword2Valid && pass2.touched" class="alert alert-danger">Confimation de mot de passe invalide</div>
+
+        <div class="row">
+          <div class="col">
+            <button type="button" class="btn btn-primary" (click)="onSubmit()" [disabled]="!isUsernameValid || !isPasswordValid || !isPassword2Valid">Inscription</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </form>
 </div>

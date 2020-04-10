@@ -12,7 +12,15 @@ export class UserEditComponent implements OnInit {
 
   user: User;
 
+  password: string;
+  password2: string;
+
   message = '';
+
+  isUsernameValid = false;
+  isPasswordValid = false;
+  isPassword2Valid= false;
+  doesPasswordsMatch = false;
 
   constructor(private dataService: DataService,
               private route: ActivatedRoute) { }
@@ -30,7 +38,44 @@ export class UserEditComponent implements OnInit {
     } else {
       this.user = new User();
     }
+  }
 
+  checkIfUsernameIsValid() {
+    if(this.user.username) {
+      this.isUsernameValid = this.user.username.trim().length > 0;
+    }
+  }
+
+  checkIfPasswordIsValid() {
+    if(this.password) {
+      this.isPasswordValid = this.password.trim().length > 0;
+    }
+  }
+
+  checkIfPasswordConfirmIsValid() {
+    if(this.password2) {
+      this.isPassword2Valid = this.password2.trim().length > 0;
+    }
+  }
+
+  checkIfPasswordsMatch() {
+    this.doesPasswordsMatch = this.password === this.password2;
+  }
+
+  onSubmit() {
+    if(this.user.id) {
+      // edit user
+    } else {
+      this.checkIfPasswordsMatch();
+      if(this.doesPasswordsMatch) {
+        this.dataService.addUser(this.user, this.password).subscribe(
+
+        );
+      } else {
+        this.message = 'Les mots de passe ne correspondent pas';
+      }
+
+    }
   }
 
 }

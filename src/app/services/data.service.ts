@@ -73,6 +73,11 @@ export class DataService {
       );
   }
 
+  addUser(newUser: User, password: string) : Observable<User> {
+    const fullUser = {id: newUser.id, username: newUser.username, password: password};
+    return this.http.post<User>(environment.restUrl + '/api/users', fullUser , {withCredentials : true});
+  }
+
   validateUser(username: string, password: string): Observable<{result: string}> {
     const authData = btoa(`${username}:${password}`);
     const headers = new HttpHeaders().append('Authorization', 'Basic ' + authData);
