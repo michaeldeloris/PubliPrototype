@@ -1,4 +1,8 @@
 <div class="container" >
+  <div class="buttons">
+    <a class="btn" role="button" (click)="editPublication(publication.id)" *ngIf="isAdmin"><span class="oi oi-pencil"></span></a>
+    <a class="btn" role="button" (click)="deletePublication(publication.id)" *ngIf="isAdmin"><span class="oi oi-trash"></span></a>
+  </div>
 
   <div class="bg-danger p-5" *ngIf="message">{{message}}</div>
   <div class="spinner-border spinner m-5" role="status" *ngIf="loadingData && !message">

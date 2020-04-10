@@ -1,14 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Publication } from '../models/Publication';
 import { DataService } from '../services/data.service';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-publications',
   templateUrl: './publications.component.html',
   styleUrls: ['./publications.component.less']
 })
-export class PublicationsComponent implements OnInit {
+export class PublicationsComponent implements OnInit, OnDestroy {
 
   publications: Array<Publication>;
 
@@ -16,11 +18,19 @@ export class PublicationsComponent implements OnInit {
   message = '';
   reloadAttemps = 0;
 
+  isAdmin = false;
+  subscription: Subscription;
+
   constructor(private dataService: DataService,
-              private router: Router) { }
+              private router: Router,
+              private authService: AuthService) { }
 
   ngOnInit(): void {
     this.loadData();
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   loadData() {
@@ -40,6 +50,13 @@ export class PublicationsComponent implements OnInit {
         }
       }
     );
+
+    this.subscription = this.authService.authenticationResultEvent.subscribe(
+      next => {
+        this.isAdmin = this.authService.role === 'ADMIN';
+      }
+    )
+    this.authService.checkIfAlreadyAuthenticated();
   }
 
   accessPublication(id: number) {
