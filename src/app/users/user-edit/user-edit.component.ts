@@ -19,7 +19,6 @@ export class UserEditComponent implements OnInit {
 
   isUsernameValid = false;
   isPasswordValid = false;
-  isPassword2Valid= false;
   doesPasswordsMatch = false;
 
   constructor(private dataService: DataService,
@@ -44,18 +43,16 @@ export class UserEditComponent implements OnInit {
   checkIfUsernameIsValid() {
     if(this.user.username) {
       this.isUsernameValid = this.user.username.trim().length > 0;
+    } else {
+      this.isUsernameValid = false;
     }
   }
 
   checkIfPasswordIsValid() {
     if(this.password) {
-      this.isPasswordValid = this.password.trim().length > 0;
-    }
-  }
-
-  checkIfPasswordConfirmIsValid() {
-    if(this.password2) {
-      this.isPassword2Valid = this.password2.trim().length > 0;
+      this.isPasswordValid = this.password.trim().length > 5;
+    } else {
+      this.isPasswordValid = false;
     }
   }
 
@@ -68,7 +65,7 @@ export class UserEditComponent implements OnInit {
       // edit user
     } else {
       this.checkIfPasswordsMatch();
-      if(this.doesPasswordsMatch) {
+      if(this.doesPasswordsMatch && this.isPasswordValid && this.isUsernameValid) {
         this.dataService.addUser(this.user, this.password).subscribe(
           next => this.router.navigate(['login'], {queryParams: {registered: 'registered'}}),
           error => console.log(error.status)
