@@ -85,5 +85,9 @@ export class DataService {
     return this.http.get<{role: string}>(environment.restUrl + '/api/role/currentUserRole', {headers, withCredentials: true});
   }
 
+  logout(): Observable<string> {
+    return this.http.get<string>(environment.restUrl + '/api/basicAuth/logout', {withCredentials: true});
+  }
+
   constructor(private http: HttpClient) { }
 }

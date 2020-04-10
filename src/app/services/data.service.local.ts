@@ -50,9 +50,12 @@ export class DataService {
     return of({result: 'ok'});
   }
 
-
   getRole(): Observable<{role: string}> {
     return of({role: 'ADMIN'});
+  }
+
+  logout(): Observable<string> {
+    return of('ok');
   }
 
   constructor() { }
