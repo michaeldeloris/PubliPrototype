@@ -7,7 +7,7 @@
       <div class="buttons col-4">
         <a class="login btn btn-primary" (click)="accessLogin()" *ngIf="!isLogged">Connexion</a>
         <a class="register btn btn-primary" (click)="accesUsersEdit()" *ngIf="!isLogged">Inscription</a>
-        <a class="logout btn btn-primary" (click)="logout()" *ngIf="isLogged">Déconnexion</a>
+        <a class="logout btn btn-danger" (click)="logout()" *ngIf="isLogged">Déconnexion</a>
       </div>
 
 
@@ -18,7 +18,7 @@
     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
       <a class="dropdown-item" (click)="accessLogin()" *ngIf="!isLogged">Connexion</a>
       <a class="dropdown-item" (click)="accesUsersEdit()" *ngIf="!isLogged">Inscription</a>
-      <a class="dropdown-item" (click)="logout()" *ngIf="isLogged">Déconnexion</a>
+      <a class="dropdown-item text-danger" (click)="logout()" *ngIf="isLogged">Déconnexion</a>
     </div>
   </div>
 </div>
