@@ -5,8 +5,9 @@
       <div class="logo col-xs-1"><img src="../../../assets/logo_transparent.png" (click)="accessHome()"></div>
 
       <div class="buttons col-4">
-        <a class="login btn btn-primary" (click)="accessLogin()">Connexion</a>
-        <a class="register btn btn-primary" (click)="accesUsersEdit()">Inscription</a>
+        <a class="login btn btn-primary" (click)="accessLogin()" *ngIf="!isLogged">Connexion</a>
+        <a class="register btn btn-primary" (click)="accesUsersEdit()" *ngIf="!isLogged">Inscription</a>
+        <a class="logout btn btn-primary" (click)="logout()" *ngIf="isLogged">Déconnexion</a>
       </div>
 
 
@@ -15,8 +16,9 @@
       <span class="oi oi-menu"></span>
     </a>
     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-      <a class="dropdown-item" href="#">Connexion</a>
-      <a class="dropdown-item" href="#">Inscription</a>
+      <a class="dropdown-item" (click)="accessLogin()" *ngIf="!isLogged">Connexion</a>
+      <a class="dropdown-item" (click)="accesUsersEdit()" *ngIf="!isLogged">Inscription</a>
+      <a class="dropdown-item" (click)="logout()" *ngIf="isLogged">Déconnexion</a>
     </div>
   </div>
 </div>
