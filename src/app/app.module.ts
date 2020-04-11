@@ -17,6 +17,7 @@ import { UsersComponent } from './users/users.component';
 import { UserEditComponent } from './users/user-edit/user-edit.component';
 import { LoginComponent } from './login/login.component';
 import { AuthRouteGuardService } from './services/auth-route-guard.service';
+import { PageNotFoundComponent } from './errors/page-not-found/page-not-found.component';
 
 const routes: Routes = [
   {path: "", component: PublicationsComponent},
@@ -26,7 +27,8 @@ const routes: Routes = [
   {path: "users", component: UsersComponent, canActivate : [AuthRouteGuardService],
                                              data: {roles: ['ADMIN']}},
   {path: "users/edit", component: UserEditComponent},
-  {path: "login", component: LoginComponent}
+  {path: "login", component: LoginComponent},
+  {path: "**", component: PageNotFoundComponent}
 ];
 
 @NgModule({
@@ -40,7 +42,8 @@ const routes: Routes = [
     MessageEditComponent,
     UsersComponent,
     UserEditComponent,
-    LoginComponent
+    LoginComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
