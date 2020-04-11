@@ -16,6 +16,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   username: string;
   password: string;
 
+  sendingRequest = false;
+
   subscription: Subscription;
 
   constructor(private authService: AuthService,
@@ -36,13 +38,16 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
+    this.sendingRequest = true;
     this.subscription = this.authService.authenticationResultEvent.subscribe(
       result => {
         if(result) {
+          this.sendingRequest = false;
           const url = this.activatedRoute.snapshot.queryParams['requested'];
           this.route.navigateByUrl(url);
         } else {
           this.message = 'Le nom d\'utilisateur ou le mot de passe n\'a pas été reconnu.';
+          this.sendingRequest = false;
         }
       }
     );

@@ -16,7 +16,10 @@
         <input type="password" class="form-control" id="password" [(ngModel)]="password" name="password"/>
       </div>
 
-      <button type="button" class="btn btn-primary" (click)="onSubmit()">Connexion</button>
+      <button type="button" class="btn btn-primary" (click)="onSubmit()" [disabled]="sendingRequest">Connexion</button>
+      <div class="spinner-border spinner-border-sm little-spinner" role="status" *ngIf="sendingRequest">
+        <span class="sr-only">Loading...</span>
+      </div>
 
   </form>
 
