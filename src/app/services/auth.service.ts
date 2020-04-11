@@ -12,6 +12,9 @@ export class AuthService {
   role: string;
   roleSetEvent = new EventEmitter<boolean>();
 
+  username: string;
+  usernameSetEvent = new EventEmitter<boolean>();
+
   constructor(private dataService: DataService) { }
 
   authenticate(username: string, password: string) {
@@ -25,6 +28,14 @@ export class AuthService {
         this.authenticationResultEvent.emit(false);
       }
     );
+  }
+
+  setUpUsername() {
+    this.dataService.getUsername().subscribe(
+      next => {
+        this.username = next.username;
+        this.usernameSetEvent.emit(true);
+      });
   }
 
   setUpRole() {

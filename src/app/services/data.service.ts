@@ -89,9 +89,14 @@ export class DataService {
     return this.http.get<{result: string}>(environment.restUrl + '/api/basicAuth/validate', {headers, withCredentials: true});
   }
 
+  getUsername():Observable<{username: string}> {
+    const headers = new HttpHeaders().append('X-Requested-With', 'XMLHttpRequest');
+    return this.http.get<{username: string}>(environment.restUrl + '/api/userInfo/currentUserName', {headers, withCredentials: true})
+  }
+
   getRole(): Observable<{role: string}> {
     const headers = new HttpHeaders().append('X-Requested-With', 'XMLHttpRequest');
-    return this.http.get<{role: string}>(environment.restUrl + '/api/role/currentUserRole', {headers, withCredentials: true});
+    return this.http.get<{role: string}>(environment.restUrl + '/api/userInfo/currentUserRole', {headers, withCredentials: true});
   }
 
   logout(): Observable<string> {
