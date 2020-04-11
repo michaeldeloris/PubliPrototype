@@ -1,7 +1,10 @@
 <div class="app-messages">
   <div class="bg-danger p-5" *ngIf="statusMessage">{{statusMessage}}</div>
+  <div class="spinner-border spinner m-5" role="status" *ngIf="loadingData && !statusMessage">
+    <span class="sr-only">Loading...</span>
+  </div>
 
-  <div class="login-message" *ngIf="!isLogged">
+  <div class="login-message" *ngIf="!isLogged && !loadingData">
     Pour poster un message, vous devez être <div class="link text-primary" (click)="accessLogin()">connecté.</div>
   </div>
   <div *ngIf="isLogged">
@@ -12,8 +15,11 @@
     <div *ngIf="!isContentValid && content.touched" class="alert alert-danger">Message invalide</div>
 
     <div class="row">
-      <div class="col">
-        <button type="button" class="btn btn-primary" (click)="onSubmit()" [disabled]="!isContentValid" >Enregistrer</button>
+      <div class="col btn-container">
+        <button type="button" class="btn btn-primary" (click)="onSubmit()" [disabled]="!isContentValid || sendingMessage" >Enregistrer</button>
+        <div class="spinner-border spinner-border-sm little-spinner" role="status" *ngIf="sendingMessage">
+          <span class="sr-only">Loading...</span>
+        </div>
       </div>
     </div>
   </div>

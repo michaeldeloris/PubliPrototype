@@ -20,6 +20,8 @@ export class MessageEditComponent implements OnInit {
   message: Message;
 
   statusMessage = '';
+  loadingData = true;
+  sendingMessage = false;
 
   isContentValid = false;
 
@@ -34,7 +36,11 @@ export class MessageEditComponent implements OnInit {
   ngOnInit(): void {
     this.loadData();
     this.subscription = this.authService.authenticationResultEvent.subscribe(
-      next => this.isLogged = this.authService.isAuthenticated
+      next => {
+        this.isLogged = this.authService.isAuthenticated;
+        this.loadingData = false;
+      }
+
     )
     this.authService.checkIfAlreadyAuthenticated();
   }
@@ -53,6 +59,7 @@ export class MessageEditComponent implements OnInit {
   }
 
   onSubmit() {
+    this.sendingMessage = true;
     const fakeUser = new User();
     //TODO : ADD RIGHT USER
     this.dataService.getUsers().subscribe(
