@@ -40,8 +40,12 @@ export class PublicationDetailsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.roleSubscription.unsubscribe();
-    this.usernameSubscription.unsubscribe();
+    if(this.roleSubscription) {
+      this.roleSubscription.unsubscribe();
+    }
+    if(this.usernameSubscription) {
+      this.usernameSubscription.unsubscribe();
+    }
   }
 
   loadData() {
