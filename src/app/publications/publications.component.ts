@@ -39,6 +39,7 @@ export class PublicationsComponent implements OnInit, OnDestroy {
         this.publications = next;
         this.loadingData = false;
         this.message = '';
+        this.sortByDate();
       },
       error => {
         this.reloadAttemps++;
@@ -57,6 +58,10 @@ export class PublicationsComponent implements OnInit, OnDestroy {
       }
     )
     this.authService.checkIfAlreadyAuthenticated();
+  }
+
+  sortByDate() {
+    this.publications.sort((a, b) => new Date(b.getPublicationDateAsDate()).getTime() - new Date(a.getPublicationDateAsDate()).getTime())
   }
 
   accessPublication(id: number) {
