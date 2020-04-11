@@ -35,7 +35,7 @@ export class MessageEditComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadData();
-    this.subscription = this.authService.authenticationResultEvent.subscribe(
+    this.subscription = this.authService.roleSetEvent.subscribe(
       next => {
         this.isLogged = this.authService.isAuthenticated;
         this.loadingData = false;
