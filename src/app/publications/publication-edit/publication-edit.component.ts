@@ -59,7 +59,12 @@ export class PublicationEditComponent implements OnInit, OnDestroy {
         }
         );
       } else {
-        this.publication = new Publication();
+        this.dataService.getCurrentUser().subscribe(
+          next => {
+            this.publication = new Publication();
+            this.publication.author = next;
+            this.loadingData = false;
+          });
     }
   }
 
