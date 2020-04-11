@@ -1,7 +1,7 @@
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Publication } from './../../models/Publication';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -10,7 +10,7 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './publication-details.component.html',
   styleUrls: ['./publication-details.component.less']
 })
-export class PublicationDetailsComponent implements OnInit {
+export class PublicationDetailsComponent implements OnInit, OnDestroy {
 
   publication: Publication;
 
@@ -18,9 +18,11 @@ export class PublicationDetailsComponent implements OnInit {
 
   loadingData = true;
 
+  ownedByUser = false;
   isAdmin = false;
 
-  subscription: Subscription;
+  roleSubscription: Subscription;
+  usernameSubscription: Subscription;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -29,13 +31,17 @@ export class PublicationDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadData();
-
-    this.subscription = this.authService.authenticationResultEvent.subscribe(
+    this.roleSubscription = this.authService.authenticationResultEvent.subscribe(
       next => {
         this.isAdmin = this.authService.role === 'ADMIN';
       }
     )
     this.authService.checkIfAlreadyAuthenticated();
+  }
+
+  ngOnDestroy() {
+    this.roleSubscription.unsubscribe();
+    this.usernameSubscription.unsubscribe();
   }
 
   loadData() {
@@ -46,10 +52,21 @@ export class PublicationDetailsComponent implements OnInit {
           this.publication = next;
           this.loadingData = false;
           this.message = '';
+          this.compareAuthorAndCurrentUser();
         },
         error => this.message = "Cette publication n'existe pas !"
       );
     }
+  }
+
+  compareAuthorAndCurrentUser() {
+    this.usernameSubscription = this.authService.usernameSetEvent.subscribe(
+      next => {
+        //alert(this.authService.username + ' VS ' + this.publication.author.username);
+        this.ownedByUser = this.authService.username === this.publication.author.username;
+      }
+    )
+    this.authService.setUpUsername();
   }
 
   editPublication(id: number) {
@@ -60,7 +77,7 @@ export class PublicationDetailsComponent implements OnInit {
     const result = confirm('Vous allez supprimer cette publication');
     if(result) {
       this.dataService.deletePublication(id).subscribe(
-        next => this.loadData()
+        next => this.router.navigate([''])
       )
     }
   }
