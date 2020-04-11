@@ -54,6 +54,8 @@ export class AuthService {
           this.role = next.role;
           this.isAuthenticated = true;
           this.authenticationResultEvent.emit(true);
+        }else {
+          this.authenticationResultEvent.emit(false);
         }
       }
     );
