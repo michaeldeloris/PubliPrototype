@@ -14,6 +14,7 @@ export class TopbarComponent implements OnInit, OnDestroy {
   constructor(private router: Router,
               private authService: AuthService) { }
 
+  isLoading = true;
   isLogged = false;
 
   subscription: Subscription;
@@ -22,7 +23,10 @@ export class TopbarComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subscription = this.authService.authenticationResultEvent.subscribe(
-      next => this.isLogged = this.authService.isAuthenticated
+      next => {
+        this.isLogged = this.authService.isAuthenticated;
+        this.isLoading = false;
+      }
     )
     this.authService.checkIfAlreadyAuthenticated();
   }
@@ -44,6 +48,7 @@ export class TopbarComponent implements OnInit, OnDestroy {
   }
 
   logout() {
+    this.isLoading = true;
     this.authService.logout();
   }
 

@@ -4,7 +4,11 @@
 
       <div class="logo col-xs-1"><img src="../../../assets/logo_transparent.png" (click)="accessHome()"></div>
 
-      <div class="buttons col-4">
+      <div class="spinner-border spinner m-5" role="status" *ngIf="isLoading">
+        <span class="sr-only">Loading...</span>
+      </div>
+
+      <div class="buttons col-4" *ngIf="!isLoading">
         <a class="login btn btn-primary" (click)="accessLogin()" *ngIf="!isLogged">Connexion</a>
         <a class="register btn btn-primary" (click)="accesUsersEdit()" *ngIf="!isLogged">Inscription</a>
         <a class="logout btn btn-danger" (click)="logout()" *ngIf="isLogged">Déconnexion</a>
@@ -12,7 +16,7 @@
 
 
     </div>
-    <a class="burger nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <a class="burger nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" *ngIf="!isLoading">
       <span class="oi oi-menu"></span>
     </a>
     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
