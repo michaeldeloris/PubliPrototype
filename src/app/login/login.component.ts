@@ -29,16 +29,6 @@ export class LoginComponent implements OnInit, OnDestroy {
     if(comesFromRegisterPage) {
       this.infoMessage = 'Utilisateur créé avec succès.';
     }
-  }
-
-  ngOnDestroy() {
-    if(this.subscription) {
-      this.subscription.unsubscribe();
-    }
-  }
-
-  onSubmit() {
-    this.sendingRequest = true;
     this.subscription = this.authService.authenticationResultEvent.subscribe(
       result => {
         if(result) {
@@ -51,6 +41,17 @@ export class LoginComponent implements OnInit, OnDestroy {
         }
       }
     );
+    this.authService.checkIfAlreadyAuthenticated();
+  }
+
+  ngOnDestroy() {
+    if(this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
+
+  onSubmit() {
+    this.sendingRequest = true;
     this.authService.checkIfAlreadyAuthenticated();
     this.authService.authenticate(this.username, this.password)
   }
