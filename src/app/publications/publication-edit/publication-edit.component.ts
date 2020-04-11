@@ -20,7 +20,9 @@ export class PublicationEditComponent implements OnInit, OnDestroy {
   isTitleValid = false;
   isContentValid= false;
 
+  message = '';
   loadingData = true;
+  sendingPublication = false;
 
   editorConfig: AngularEditorConfig = {
     editable: true,
@@ -90,13 +92,22 @@ export class PublicationEditComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
+    this.sendingPublication = true;
     if(this.publication.id != null) {
       this.dataService.updatePublication(this.publication).subscribe(
-        next => this.router.navigate([''])
-      )
-    } else {
-      this.dataService.addPublication(this.publication).subscribe(
-        next => this.router.navigate(['']) // TODO : manage error
+        next => this.router.navigate(['']),
+        error => {
+          this.message = 'Impossible d\'enregistrer la publication.';
+          this.sendingPublication = false;
+        }
+        )
+      } else {
+        this.dataService.addPublication(this.publication).subscribe(
+          next => this.router.navigate(['']),
+          error => {
+            this.message = 'Impossible d\'enregistrer la publication.';
+            this.sendingPublication = false;
+          }
       );
     }
   }

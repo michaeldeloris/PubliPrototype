@@ -9,7 +9,7 @@
     <div class="row">
       <div class="form-group col-md-6">
         <label for="title">Titre</label>
-        <input type="text" class="form-control" id="title" [(ngModel)]="publication.title" name="title" required #title="ngModel" (change)="checkIfTitleIsValid()">
+        <input type="text" class="form-control" id="title" [(ngModel)]="publication.title" name="title" required #title="ngModel" (ngModelChange)="checkIfTitleIsValid()">
         <div *ngIf="title.touched && title.invalid" class="alert alert-danger">Titre requis</div>
         <div *ngIf="!isTitleValid && title.touched" class="alert alert-danger">Titre invalide</div>
       </div>
@@ -29,8 +29,12 @@
 
     <div class="row">
       <div class="col">
-        <button type="button" class="btn btn-primary" (click)="onSubmit()" [disabled]="!isTitleValid || !isContentValid" >Enregistrer</button>
+        <button type="button" class="btn btn-primary" (click)="onSubmit()" [disabled]="!isTitleValid || !isContentValid || sendingPublication" >Enregistrer</button>
+        <div class="spinner-border spinner-border-sm little-spinner" role="status" *ngIf="sendingPublication">
+          <span class="sr-only">Loading...</span>
+        </div>
       </div>
     </div>
+    <div class="bg-danger p-5" *ngIf="message">{{message}} </div>
   </form>
 </div>
