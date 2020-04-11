@@ -1,7 +1,11 @@
 <div class="publication-edit container">
   <h1>{{publication?.id ? 'Éditer' : 'Ajouter'}} une publication</h1>
 
-  <form>
+  <div class="spinner-border spinner m-5" role="status" *ngIf="loadingData">
+    <span class="sr-only">Loading...</span>
+  </div>
+
+  <form *ngIf="!loadingData">
     <div class="row">
       <div class="form-group col-md-6">
         <label for="title">Titre</label>

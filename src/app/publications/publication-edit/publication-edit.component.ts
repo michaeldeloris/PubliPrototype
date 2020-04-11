@@ -20,6 +20,8 @@ export class PublicationEditComponent implements OnInit, OnDestroy {
   isTitleValid = false;
   isContentValid= false;
 
+  loadingData = true;
+
   editorConfig: AngularEditorConfig = {
     editable: true,
     minHeight: '250px',
@@ -35,7 +37,11 @@ export class PublicationEditComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.loadData();
     this.dataLoadedSubscription = this.dataLoadedEvent.subscribe(
-      next => this.initializeForm()
+      next => {
+        this.initializeForm();
+        this.loadingData = false;
+      }
+
     )
   }
 
