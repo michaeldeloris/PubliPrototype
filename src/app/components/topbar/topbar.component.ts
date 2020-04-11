@@ -17,12 +17,19 @@ export class TopbarComponent implements OnInit, OnDestroy {
   isLoading = true;
   isLogged = false;
 
-  subscription: Subscription;
+  roleSubscription: Subscription;
+  authUpdateSubscription: Subscription;
 
   message = '';
 
   ngOnInit(): void {
-    this.subscription = this.authService.authenticationResultEvent.subscribe(
+    this.roleSubscription = this.authService.roleSetEvent.subscribe(
+      next => {
+        this.isLogged = this.authService.isAuthenticated;
+        this.isLoading = false;
+      }
+    )
+    this.authUpdateSubscription = this.authService.authenticationResultEvent.subscribe(
       next => {
         this.isLogged = this.authService.isAuthenticated;
         this.isLoading = false;
@@ -32,7 +39,12 @@ export class TopbarComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    if(this.roleSubscription) {
+      this.roleSubscription.unsubscribe();
+    }
+    if(this.authUpdateSubscription) {
+      this.authUpdateSubscription.unsubscribe();
+    }
   }
 
   accessHome() {

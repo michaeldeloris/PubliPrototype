@@ -53,9 +53,10 @@ export class AuthService {
         if(next.role !== '' && next.role !== 'ANONYMOUS') {
           this.role = next.role;
           this.isAuthenticated = true;
+          this.roleSetEvent.emit(true);
           this.authenticationResultEvent.emit(true);
         }else {
-          this.authenticationResultEvent.emit(false);
+          this.roleSetEvent.emit(false);
         }
       }
     );
