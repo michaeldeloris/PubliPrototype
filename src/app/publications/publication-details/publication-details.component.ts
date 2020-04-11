@@ -62,7 +62,6 @@ export class PublicationDetailsComponent implements OnInit, OnDestroy {
   compareAuthorAndCurrentUser() {
     this.usernameSubscription = this.authService.usernameSetEvent.subscribe(
       next => {
-        //alert(this.authService.username + ' VS ' + this.publication.author.username);
         this.ownedByUser = this.authService.username === this.publication.author.username;
       }
     )
