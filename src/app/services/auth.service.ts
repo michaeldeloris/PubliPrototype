@@ -62,8 +62,11 @@ export class AuthService {
   }
 
   logout() {
-    this.dataService.logout().subscribe();
-    this.isAuthenticated = false;
-    this.authenticationResultEvent.emit(false);
+    this.dataService.logout().subscribe(
+      next => {
+        this.isAuthenticated = false;
+        this.authenticationResultEvent.emit(false);
+        location.reload();
+      });
   }
 }
