@@ -8,7 +8,7 @@
   <form *ngIf="!loadingData">
     <div class="row">
       <div class="form-group col-md-6">
-        <label for="title">Titre</label>
+        <label for="title">Titre</label><span class="icon oi oi-star"></span>
         <input type="text" class="form-control" id="title" [(ngModel)]="publication.title" name="title" required #title="ngModel" (ngModelChange)="checkIfTitleIsValid()">
         <div *ngIf="title.touched && title.invalid" class="alert alert-danger">Titre requis</div>
         <div *ngIf="!isTitleValid && title.touched" class="alert alert-danger">Titre invalide</div>
@@ -20,11 +20,15 @@
       </div>
 
       <div class="form-group col-12">
-        <label for="content">Contenu</label>
+        <label for="content">Contenu</label><span class="icon oi oi-star"></span>
         <angular-editor [(ngModel)]="publication.content" required #content="ngModel" [config]="editorConfig" name="content" (ngModelChange)="checkIfContentIsValid()"></angular-editor>
         <div *ngIf="content.touched && content.invalid" class="alert alert-danger">Contenu requis</div>
         <div *ngIf="!isContentValid && content.touched" class="alert alert-danger">Contenu invalide</div>
       </div>
+    </div>
+
+    <div class="required-info">
+      <span class="oi oi-star"></span> = obligatoire
     </div>
 
     <div class="row">
