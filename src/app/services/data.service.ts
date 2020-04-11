@@ -89,14 +89,22 @@ export class DataService {
     return this.http.get<{result: string}>(environment.restUrl + '/api/basicAuth/validate', {headers, withCredentials: true});
   }
 
+  getCurrentUser(): Observable<User> {
+    const headers = new HttpHeaders().append('X-Requested-With', 'XMLHttpRequest');
+    return this.http.get<User>(environment.restUrl + '/api/currentUser/', {headers, withCredentials: true})
+      .pipe(
+        map(data => User.fromHttp(data))
+      );
+  }
+
   getUsername():Observable<{username: string}> {
     const headers = new HttpHeaders().append('X-Requested-With', 'XMLHttpRequest');
-    return this.http.get<{username: string}>(environment.restUrl + '/api/userInfo/currentUserName', {headers, withCredentials: true})
+    return this.http.get<{username: string}>(environment.restUrl + '/api/currentUser/username', {headers, withCredentials: true});
   }
 
   getRole(): Observable<{role: string}> {
     const headers = new HttpHeaders().append('X-Requested-With', 'XMLHttpRequest');
-    return this.http.get<{role: string}>(environment.restUrl + '/api/userInfo/currentUserRole', {headers, withCredentials: true});
+    return this.http.get<{role: string}>(environment.restUrl + '/api/currentUser/role', {headers, withCredentials: true});
   }
 
   logout(): Observable<string> {
