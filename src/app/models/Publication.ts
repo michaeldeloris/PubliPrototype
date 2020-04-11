@@ -11,7 +11,7 @@ export class Publication {
   messages: Array<Message>;
 
   getPublicationDateAsDate() {
-    return new Date(this.publicationDate);
+    return new Date(this.publicationDate.split('.')[0]); //adapt date to work on iOS too
   }
 
   static fromHttp(publication: Publication): Publication {
