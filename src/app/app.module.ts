@@ -20,15 +20,15 @@ import { AuthRouteGuardService } from './services/auth-route-guard.service';
 import { PageNotFoundComponent } from './errors/page-not-found/page-not-found.component';
 
 const routes: Routes = [
-  {path: "", component: PublicationsComponent},
-  {path: "publication", component: PublicationDetailsComponent},
-  {path: "publication/add", component: PublicationEditComponent, canActivate : [AuthRouteGuardService]},
-  {path: "publication/edit", component: PublicationEditComponent, canActivate : [AuthRouteGuardService]},
+  {path: "", component: PublicationsComponent, data: {title : 'Accueil'}},
+  {path: "publication", component: PublicationDetailsComponent, data: {title : 'Publication'}},
+  {path: "publication/add", component: PublicationEditComponent, canActivate : [AuthRouteGuardService], data: {title : 'Ajout'}},
+  {path: "publication/edit", component: PublicationEditComponent, canActivate : [AuthRouteGuardService], data: {title : 'Édition'}},
   {path: "users", component: UsersComponent, canActivate : [AuthRouteGuardService],
-                                             data: {roles: ['ADMIN']}},
-  {path: "users/edit", component: UserEditComponent},
-  {path: "login", component: LoginComponent},
-  {path: "**", component: PageNotFoundComponent}
+                                             data: {roles: ['ADMIN'], title: 'Utilisateurs'}},
+  {path: "users/edit", component: UserEditComponent, data: {title : 'Inscription'}},
+  {path: "login", component: LoginComponent, data: {title : 'Connexion'}},
+  {path: "**", component: PageNotFoundComponent, data: {title : '404'}}
 ];
 
 @NgModule({
