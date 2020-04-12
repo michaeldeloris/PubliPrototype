@@ -4,14 +4,14 @@
   <div class="spinner-border spinner m-5" role="status" *ngIf="loadingData && !message">
     <span class="sr-only">Loading...</span>
   </div>
-  <h3 *ngIf="publications?.length === 0">Pas de publication ! Soyez le premier à poster !</h3>
-  <div class="publication" *ngFor="let publication of publications">
+  <h3 class="no-pubs" *ngIf="publications?.length === 0">Pas de publication ! Soyez le premier à poster !</h3>
+  <div class="publication {{isAdmin ? 'admin' : ''}}" *ngFor="let publication of publications">
     <div class="buttons">
       <a class="btn" role="button" (click)="editPublication(publication.id)" *ngIf="isAdmin"><span class="oi oi-pencil"></span></a>
       <a class="btn" role="button" (click)="deletePublication(publication.id)" *ngIf="isAdmin"><span class="oi oi-trash"></span></a>
     </div>
     <div class="content">
-      <div class="image" *ngIf="publication.imagePath"><img src='{{publication.imagePath}}'></div>
+      <div class="image link" *ngIf="publication.imagePath" (click)="accessPublication(publication.id)"><img src='{{publication.imagePath}}'></div>
       <div class="details {{publication.imagePath ? 'reduced' : ''}}">
         <div class="title link" (click)="accessPublication(publication.id)">{{publication.title}} </div>
         <div class="infos">
