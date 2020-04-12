@@ -60,15 +60,17 @@ export class MessageEditComponent implements OnInit {
 
   onSubmit() {
     this.sendingMessage = true;
-    const fakeUser = new User();
-    //TODO : ADD RIGHT USER
     this.dataService.getUsers().subscribe(
       next =>  {
-        this.message.author = next.find(user => user.username === 'michael')
-        this.dataService.addMessage(this.publication.id, this.message).subscribe(
-          next => window.location.reload(),
-          error => this.statusMessage = 'Impossible d\'enregistrer le nouveau message... Réessayez plus tard.'
-        );
+        this.message.author = next.find(user => user.username === this.authService.username);
+        if(this.message.author) {
+          this.dataService.addMessage(this.publication.id, this.message).subscribe(
+            next => window.location.reload(),
+            error => this.statusMessage = 'Impossible d\'enregistrer le nouveau message... Réessayez plus tard.'
+          );
+        } else {
+          this.statusMessage = 'Utilisateur introuvable';
+        }
       },
       error => this.statusMessage = 'Communication avec le serveur interrompue'
     )
