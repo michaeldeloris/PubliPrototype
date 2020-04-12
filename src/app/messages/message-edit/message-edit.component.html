@@ -5,7 +5,7 @@
   </div>
 
   <div class="login-message" *ngIf="!isLogged && !loadingData">
-    Pour poster un message, vous devez être <div class="link text-primary" (click)="accessLogin()">connecté.</div>
+    <div class="label">Pour poster un message, vous devez être </div><div class="link text-primary" (click)="accessLogin()">connecté.</div>
   </div>
   <div *ngIf="isLogged">
     <label for="content">Exprimez vous !</label>
