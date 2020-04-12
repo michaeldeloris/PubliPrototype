@@ -21,7 +21,7 @@
     <h4 *ngIf="publication?.messages.length === 0">Il n'y a pas de messages... Soyez le premier à réagir ! </h4>
     <div class="message" *ngFor="let message of publication?.messages">
       <div class="infos">
-        <div class="author">De {{message.author.username}}</div>
+        <div class="author-label">De <div class="author-name">{{message.author.username}}</div></div>
         <div class="date">le {{message.publicationDate | date : 'dd/MM/yyyy à H:mm:ss'}}</div>
       </div>
       <div class="message-content">{{message.content}}</div>
