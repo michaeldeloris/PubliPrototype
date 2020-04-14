@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  restUrl: 'https://myServer.com'
+  restUrl: 'http://www.publiproto.com'
 };
