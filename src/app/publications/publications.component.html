@@ -13,7 +13,7 @@
     <div class="content">
       <div class="image link" *ngIf="publication.imagePath" (click)="accessPublication(publication.id)"><img src='{{publication.imagePath}}'></div>
       <div class="details {{publication.imagePath ? 'reduced' : ''}}">
-        <div class="title link" (click)="accessPublication(publication.id)">{{publication.title}} </div>
+        <div class="title link text-primary" (click)="accessPublication(publication.id)">{{publication.title}} </div>
         <div class="infos">
           <div class="date"> <div class="label">Publié le</div>{{publication.publicationDate | date : 'dd/MM/yyyy à H:mm'}}</div>
           <div class="author"> <div class="label">par</div><div class="link">{{publication.author.username}}</div></div>
