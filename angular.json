@@ -28,6 +28,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
               "src/styles.less",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/open-iconic-master/font/css/open-iconic-bootstrap.min.css"
@@ -109,6 +110,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
               "src/styles.less"
             ],
             "scripts": []
@@ -140,6 +142,7 @@
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "PubliProtoClient"
 }

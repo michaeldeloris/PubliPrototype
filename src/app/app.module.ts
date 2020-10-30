@@ -18,6 +18,7 @@ import { UserEditComponent } from './users/user-edit/user-edit.component';
 import { LoginComponent } from './login/login.component';
 import { AuthRouteGuardService } from './services/auth-route-guard.service';
 import { PageNotFoundComponent } from './errors/page-not-found/page-not-found.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const routes: Routes = [
   {path: "", component: PublicationsComponent, data: {title : 'Accueil'}},
@@ -50,7 +51,8 @@ const routes: Routes = [
     FormsModule,
     HttpClientModule,
     AngularEditorModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
