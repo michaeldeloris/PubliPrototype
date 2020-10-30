@@ -108,7 +108,8 @@ export class DataService {
   }
 
   logout(): Observable<string> {
-    return this.http.get<string>(environment.restUrl + '/api/basicAuth/logout', {withCredentials: true});
+    const headers = new HttpHeaders().append('X-Requested-With', 'XMLHttpRequest');
+    return this.http.get<string>(environment.restUrl + '/api/basicAuth/logout', {headers, withCredentials: true});
   }
 
   constructor(private http: HttpClient) { }
