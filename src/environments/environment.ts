@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  restUrl: 'http://192.168.1.31:8080'
+  restUrl: 'http://192.168.0.16:8080'
 };
 
 /*
