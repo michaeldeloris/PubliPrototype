@@ -1,7 +1,11 @@
 <div class="container" >
   <div class="buttons">
-    <a class="btn" role="button" (click)="editPublication(publication.id)" *ngIf="isAdmin || ownedByUser"><span class="oi oi-pencil"></span></a>
-    <a class="btn" role="button" (click)="deletePublication(publication.id)" *ngIf="isAdmin || ownedByUser"><span class="oi oi-trash"></span></a>
+    <a class="btn" role="button" (click)="editPublication(publication.id)" *ngIf="isAdmin || ownedByUser">
+      <span class="material-icons">edit</span>
+    </a>
+    <a class="btn" role="button" (click)="deletePublication(publication.id)" *ngIf="isAdmin || ownedByUser">
+      <span class="material-icons">delete</span>
+    </a>
   </div>
 
   <div class="bg-danger p-5" *ngIf="message">{{message}}</div>
