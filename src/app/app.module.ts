@@ -20,6 +20,8 @@ import { AuthRouteGuardService } from './services/auth-route-guard.service';
 import { PageNotFoundComponent } from './errors/page-not-found/page-not-found.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import {MatIconModule} from '@angular/material/icon';
+
 const routes: Routes = [
   {path: "", component: PublicationsComponent, data: {title : 'Accueil'}},
   {path: "publication", component: PublicationDetailsComponent, data: {title : 'Publication'}},
@@ -52,7 +54,8 @@ const routes: Routes = [
     HttpClientModule,
     AngularEditorModule,
     RouterModule.forRoot(routes),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
