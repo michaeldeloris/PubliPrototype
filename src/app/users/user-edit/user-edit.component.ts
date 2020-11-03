@@ -60,6 +60,11 @@ export class UserEditComponent implements OnInit {
     this.doesPasswordsMatch = this.password === this.password2;
   }
 
+  useSubmitBtn() {
+    let submitBtn: HTMLElement = document.getElementsByClassName('submit-btn')[0] as HTMLElement;
+    submitBtn.click();
+  }
+
   onSubmit() {
     if(this.user.id) {
       // edit user

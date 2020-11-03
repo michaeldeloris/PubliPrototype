@@ -4,7 +4,7 @@
   <div class="bg-warning p-5" *ngIf="message">{{message}}</div>
   <div class="bg-primary p-5" *ngIf="infoMessage">{{infoMessage}}</div>
 
-  <form #userForm="ngForm" class="row">
+  <form #userForm="ngForm" class="row" (keyup.enter)="onSubmit()">
 
       <div class="form-group col-md-6">
         <label name="username">Nom d'utilisateur</label>
