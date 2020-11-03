@@ -73,7 +73,7 @@ export class UserEditComponent implements OnInit {
       if(this.doesPasswordsMatch && this.isPasswordValid && this.isUsernameValid) {
         this.dataService.addUser(this.user, this.password).subscribe(
           next => this.router.navigate(['login'], {queryParams: {registered: 'registered'}}),
-          error => this.message = 'Ce nom d\'utilisateur est déjà prit.'
+          error => this.message = 'Ce nom d\'utilisateur est déjà pris.'
         );
       } else {
         this.message = 'Les mots de passe ne correspondent pas';
