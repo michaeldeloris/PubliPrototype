@@ -12,11 +12,15 @@
   <div class="spinner-border spinner m-5" role="status" *ngIf="loadingData && !message">
     <span class="sr-only">Loading...</span>
   </div>
+
   <h1 class="title">{{publication?.title}}</h1>
   <div class="infos">
     <div class="date" *ngIf="publication">Publié le {{publication?.publicationDate | date : 'dd/MM/yyyy à H:mm:ss'}}</div>
     <div class="author" *ngIf="publication">par {{publication?.author.username}}</div>
   </div>
+
+  <div class="image" *ngIf="publication?.imagePath"><img src="{{publication.imagePath}}"></div>
+
   <div class="content" [innerHTML]='publication?.content'></div>
 
   <div class="messages">
