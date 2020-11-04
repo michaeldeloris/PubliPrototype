@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -18,7 +18,8 @@ export class UnauthorizedComponent implements OnInit, OnDestroy {
   logOutSubscription: Subscription;
 
   constructor(private authService: AuthService,
-              private router: Router) { }
+              private router: Router,
+              private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.logInSubscription = this.authService.roleSetEvent.subscribe(
@@ -29,7 +30,7 @@ export class UnauthorizedComponent implements OnInit, OnDestroy {
     this.logOutSubscription = this.authService.logOutEvent.subscribe(
       next => {
         this.loadingData = false;
-        this.router.navigate(['login']);
+        this.router.navigate(['login'], {queryParams: {requested: this.route.snapshot.queryParams['requested']}});
     });
 
     this.authService.checkIfAlreadyAuthenticated();

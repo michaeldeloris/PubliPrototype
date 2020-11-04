@@ -16,7 +16,7 @@ export class AuthRouteGuardService implements CanActivate {
       this.router.navigate(['login'], {queryParams: {requested : state.url}});
     } else if(roles) {
       if(!roles.includes(this.authService.role)) {
-        this.router.navigate(['unauthorized']);
+        this.router.navigate(['unauthorized'], {queryParams: {requested : state.url}});
       }
     }
     return this.authService.isAuthenticated;
