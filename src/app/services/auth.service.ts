@@ -67,7 +67,6 @@ export class AuthService {
       next => {
         this.isAuthenticated = false;
         this.authenticationResultEvent.emit(false);
-        location.reload();
       });
   }
 }
