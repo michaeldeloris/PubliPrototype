@@ -1,1 +1,11 @@
-<p>unauthorized works!</p>
+<div class="container">
+  <h1 class="text-sanger">401 - Accès refusé</h1>
+
+  <p class="link text-primary" (click)="processLogIn()" *ngIf="!loadingData">Se connecter avec un compte autorisé (vous déconnecte)</p>
+  <p class="link text-primary" (click)="accessHomePage()" *ngIf="!loadingData">Retourner à la page d'accueil</p>
+
+  <div class="spinner-border spinner m-1" role="status" *ngIf="loadingData">
+    <span class="sr-only">Loading...</span>
+  </div>
+
+</div>
