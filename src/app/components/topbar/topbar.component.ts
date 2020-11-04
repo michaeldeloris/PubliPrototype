@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-topbar',
@@ -61,8 +62,10 @@ export class TopbarComponent implements OnInit, OnDestroy {
 
   logout() {
     this.isLoading = true;
+    this.authService.logOutEvent.pipe(first()).subscribe(
+      next => location.reload()
+    );
     this.authService.logout();
-    location.reload();
   }
 
 }
