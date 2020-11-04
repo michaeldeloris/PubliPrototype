@@ -21,6 +21,7 @@ import { PageNotFoundComponent } from './errors/page-not-found/page-not-found.co
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {MatIconModule} from '@angular/material/icon';
+import { UnauthorizedComponent } from './errors/unauthorized/unauthorized.component';
 
 const routes: Routes = [
   {path: "", component: PublicationsComponent, data: {title : 'Accueil'}},
@@ -31,6 +32,7 @@ const routes: Routes = [
                                              data: {roles: ['ADMIN'], title: 'Utilisateurs'}},
   {path: "users/edit", component: UserEditComponent, data: {title : 'Inscription'}},
   {path: "login", component: LoginComponent, data: {title : 'Connexion'}},
+  {path: "unauthorized", component: UnauthorizedComponent, data: {title : 'Accès refusé'}},
   {path: "**", component: PageNotFoundComponent, data: {title : '404'}}
 ];
 
@@ -46,7 +48,8 @@ const routes: Routes = [
     UsersComponent,
     UserEditComponent,
     LoginComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    UnauthorizedComponent
   ],
   imports: [
     BrowserModule,
