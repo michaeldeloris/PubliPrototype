@@ -15,6 +15,8 @@ export class AuthService {
   username: string;
   usernameSetEvent = new EventEmitter<boolean>();
 
+  logOutEvent = new EventEmitter<void>();
+
   constructor(private dataService: DataService) { }
 
   authenticate(username: string, password: string) {
@@ -66,6 +68,7 @@ export class AuthService {
     this.dataService.logout().subscribe(
       next => {
         this.isAuthenticated = false;
+        this.logOutEvent.emit();
         this.authenticationResultEvent.emit(false);
       });
   }
