@@ -32,13 +32,12 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.subscription = this.authService.authenticationResultEvent.subscribe(
       result => {
         if(result) {
-          this.sendingRequest = false;
           const url = this.activatedRoute.snapshot.queryParams['requested'];
           this.route.navigateByUrl(url);
-        } else {
+        } else if(this.sendingRequest) {
           this.message = 'Le nom d\'utilisateur ou le mot de passe n\'a pas été reconnu.';
-          this.sendingRequest = false;
         }
+        this.sendingRequest = false;
       }
     );
     this.authService.checkIfAlreadyAuthenticated();
@@ -52,8 +51,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   onSubmit() {
     this.sendingRequest = true;
-    this.authService.checkIfAlreadyAuthenticated();
-    this.authService.authenticate(this.username, this.password)
+    this.authService.authenticate(this.username, this.password);
   }
 
   accesUsersEdit() {
