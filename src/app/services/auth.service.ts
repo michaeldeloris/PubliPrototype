@@ -22,8 +22,13 @@ export class AuthService {
   authenticate(username: string, password: string) {
     this.dataService.validateUser(username, password).subscribe(
       next => {
-        this.isAuthenticated = true;
-        this.authenticationResultEvent.emit(true);
+        this.roleSetEvent.subscribe(
+          next => {
+            this.isAuthenticated = true;
+            this.authenticationResultEvent.emit(true);
+          }
+        )
+        this.setUpRole();
       },
       error => {
         this.isAuthenticated = false;
