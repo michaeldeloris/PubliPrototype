@@ -26,13 +26,6 @@ export class UnauthorizedComponent implements OnInit, OnDestroy {
       next => {
         this.isLogged = this.authService.isAuthenticated;
     });
-
-    this.logOutSubscription = this.authService.logOutEvent.subscribe(
-      next => {
-        this.loadingData = false;
-        this.router.navigate(['login'], {queryParams: {requested: this.route.snapshot.queryParams['requested']}});
-    });
-
     this.authService.checkIfAlreadyAuthenticated();
   }
 
@@ -48,10 +41,15 @@ export class UnauthorizedComponent implements OnInit, OnDestroy {
   processLogIn() {
     if(this.isLogged) {
       this.loadingData = true;
+      this.logOutSubscription = this.authService.logOutEvent.subscribe(
+        next => {
+          this.loadingData = false;
+          this.router.navigate(['login'], {queryParams: {requested: this.route.snapshot.queryParams['requested']}});
+      });
       this.authService.logout();
       return;
     }
-    this.router.navigate(['login']);
+    this.router.navigate(['login'], {queryParams: {requested: this.route.snapshot.queryParams['requested']}});
   }
 
   accessHomePage() {
