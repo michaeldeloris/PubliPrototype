@@ -72,9 +72,13 @@ export class AuthService {
   logout() {
     this.dataService.logout().subscribe(
       next => {
-        this.isAuthenticated = false;
-        this.logOutEvent.emit();
-        this.authenticationResultEvent.emit(false);
+        this.roleSetEvent.subscribe(
+          next => {
+            this.isAuthenticated = false;
+            this.logOutEvent.emit();
+            this.authenticationResultEvent.emit(false);
+        });
+        this.setUpRole();
       });
   }
 }
