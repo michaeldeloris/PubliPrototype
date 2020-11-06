@@ -14,6 +14,7 @@ export class UsersComponent implements OnInit {
   users: Array<User>;
 
   message: string;
+  errorMessage: string;
 
   constructor(private dataService: DataService,
               private route: ActivatedRoute,
@@ -51,7 +52,7 @@ export class UsersComponent implements OnInit {
           const index =  this.users.indexOf(this.users.find(user => user.id === id));
           this.users.splice(index, 1);
         },
-        error => this.message = 'Impossible de supprimer l\'utilisateur'
+        error => this.errorMessage = 'Impossible de supprimer l\'utilisateur'
       );
     }
   }

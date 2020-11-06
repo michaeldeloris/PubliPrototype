@@ -1,6 +1,7 @@
 <div class="container">
 
-  <div class="message bg-primary" *ngIf="message">{{message}}</div>
+  <div class="message bg-primary p-4" *ngIf="message">{{message}}</div>
+  <div class="message bg-danger p-4" *ngIf="errorMessage">{{errorMessage}}</div>
 
   <div class="user" *ngFor="let user of users">
     <div class="username">{{user.username}}</div>
