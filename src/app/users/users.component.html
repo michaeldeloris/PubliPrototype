@@ -1,6 +1,10 @@
 <div class="container">
+
+  <div class="message bg-primary" *ngIf="message">{{message}}</div>
+
   <div class="user" *ngFor="let user of users">
     <div class="username">{{user.username}}</div>
     <span class="material-icons link" (click)="deleteUser(user.id)">delete</span>
   </div>
+
 </div>

@@ -1,7 +1,8 @@
 import { User } from './../models/User';
 import { DataService } from 'src/app/services/data.service';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { query } from '@angular/animations';
 
 @Component({
   selector: 'app-users',
@@ -15,6 +16,7 @@ export class UsersComponent implements OnInit {
   message: string;
 
   constructor(private dataService: DataService,
+              private route: ActivatedRoute,
               private router: Router) { }
 
   ngOnInit(): void {
@@ -22,14 +24,34 @@ export class UsersComponent implements OnInit {
       next => this.users = next,
       error => this.message = 'Impossible de récupérer la liste des utilisateurs.'
     );
+    this.loadMessage();
+  }
+
+  loadMessage() {
+    const op = this.route.snapshot.queryParams['op'];
+    switch(op) {
+      case 'edit': {
+        this.message = 'Utilisateur modifié avec succès.';
+        break;
+      }
+      case 'delete': {
+        this.message = 'Utilisateur supprimé avec succès.';
+        break;
+      }
+      default : this.message = '';
+    }
   }
 
   deleteUser(id: number) {
-    const result = confirm('Vous allez supprimer cet utilisateur.');
+    const result = confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?');
     if(result) {
       this.dataService.deleteUser(id).subscribe(
-        next => this.router.navigate(['users']),
-        message => this.message = 'Impossible de supprimer l\'utilisateur'
+        next => {
+          this.router.navigate(['users'], {queryParams: {op : 'delete'}}).then(() => this.loadMessage());
+          const index =  this.users.indexOf(this.users.find(user => user.id === id));
+          this.users.splice(index, 1);
+        },
+        error => this.message = 'Impossible de supprimer l\'utilisateur'
       );
     }
   }
