@@ -2,7 +2,6 @@ import { User } from './../models/User';
 import { DataService } from 'src/app/services/data.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { query } from '@angular/animations';
 
 @Component({
   selector: 'app-users',
@@ -41,6 +40,10 @@ export class UsersComponent implements OnInit {
       }
       default : this.message = '';
     }
+  }
+
+  accessEditUser(id: number) {
+    this.router.navigate(['users', 'edit'], {queryParams: {id}});
   }
 
   deleteUser(id: number) {
