@@ -3,7 +3,7 @@
 
   <div *ngIf="message" class="alert alert-danger">{{message}}</div>
 
-  <form #userForm="ngForm" (keyup.enter)="useSubmitBtn()">
+  <form #userForm="ngForm" (keyup.enter)="useSubmitBtn()" *ngIf="!user.id">
     <div class="row">
       <div class="form-group col-md-6">
         <label for="username">Nom d'utilisateur</label>
@@ -29,4 +29,12 @@
       </div>
     </div>
   </form>
+
+  <form #editForm="ngForm" (keyup.enter)="useSubmitBtn()" *ngIf="user.id">
+    <label for="username">Nom d'utilisateur : </label>
+    <input type="text" class="form-control" id="username" [(ngModel)]="user.username" name="username" disabled #username="ngModel">
+
+    <label for="role">Role : </label>
+  </form>
+
 </div>
