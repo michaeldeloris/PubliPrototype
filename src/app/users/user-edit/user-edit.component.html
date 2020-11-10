@@ -3,7 +3,7 @@
 
   <div *ngIf="message" class="alert alert-danger">{{message}}</div>
 
-  <form #userForm="ngForm" (keyup.enter)="useSubmitBtn()" *ngIf="!user?.id">
+  <form #userForm="ngForm" (keyup.enter)="useSubmitBtn('add')" *ngIf="!user?.id">
     <div class="row">
       <div class="form-group col-md-6">
         <label for="username">Nom d'utilisateur</label>
@@ -22,7 +22,7 @@
 
         <div class="row">
           <div class="col">
-            <button type="button" class="btn btn-primary submit-btn" (click)="onSubmit()" [disabled]="userForm.invalid || !isUsernameValid || !isPasswordValid">Inscription</button>
+            <button type="button" class="btn btn-primary submit-btn-add" (click)="onSubmit()" [disabled]="userForm.invalid || !isUsernameValid || !isPasswordValid">Inscription</button>
           </div>
         </div>
 
@@ -30,7 +30,7 @@
     </div>
   </form>
 
-  <form #editForm="ngForm" (keyup.enter)="useSubmitBtn()" *ngIf="user?.id">
+  <form #editForm="ngForm" (keyup.enter)="useSubmitBtn('edit')" *ngIf="user?.id">
     <label for="username">Nom d'utilisateur : </label>
     <input type="text" class="form-control" id="username" [(ngModel)]="user.username" name="username" disabled #username="ngModel">
 
@@ -41,7 +41,7 @@
 
     <div class="row">
       <div class="col">
-        <button type="button" class="btn btn-primary submit-btn" (click)="onSubmit()">Modifier</button>
+        <button type="button" class="btn btn-primary submit-btn-edit" (click)="onSubmit()">Modifier</button>
       </div>
     </div>
   </form>
