@@ -1,7 +1,7 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from './../../services/data.service';
 import { Component, OnInit } from '@angular/core';
-import { User } from 'src/app/models/User';
+import { Role, User } from 'src/app/models/User';
 
 @Component({
   selector: 'app-user-edit',
@@ -11,6 +11,8 @@ import { User } from 'src/app/models/User';
 export class UserEditComponent implements OnInit {
 
   user: User;
+
+  roles = Object.keys(Role);
 
   password: string;
   password2: string;
@@ -67,7 +69,12 @@ export class UserEditComponent implements OnInit {
 
   onSubmit() {
     if(this.user.id) {
-      // edit user
+      this.dataService.updateUser(this.user).subscribe(
+        next => {
+          location.reload();
+        },
+        error => this.message = 'Un problème est survenu. Veuillez patienter quelques secondes, puis recommencez.'
+      )
     } else {
       this.checkIfPasswordsMatch();
       if(this.doesPasswordsMatch && this.isPasswordValid && this.isUsernameValid) {
