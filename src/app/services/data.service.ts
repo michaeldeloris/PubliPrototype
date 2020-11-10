@@ -78,6 +78,10 @@ export class DataService {
     return this.http.post<User>(environment.restUrl + '/api/users', fullUser, {withCredentials : true});
   }
 
+  updateUser(user: User): Observable<User> {
+    return this.http.put<User>(environment.restUrl + '/api/users', user, {withCredentials: true});
+  }
+
   deleteUser(id: number): Observable<any> {
     return this.http.delete(environment.restUrl + '/api/users/'+ id, {withCredentials : true});
   }
