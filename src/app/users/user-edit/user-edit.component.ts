@@ -14,18 +14,10 @@ export class UserEditComponent implements OnInit {
 
   roles = Object.keys(Role);
 
-  password: string;
-  password2: string;
-
   message = '';
 
-  isUsernameValid = false;
-  isPasswordValid = false;
-  doesPasswordsMatch = false;
-
   constructor(private dataService: DataService,
-              private route: ActivatedRoute,
-              private router: Router) { }
+              private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     const id = this.route.snapshot.queryParams['id'];
@@ -37,33 +29,11 @@ export class UserEditComponent implements OnInit {
         },
         error => this.message = 'Impossible de récupérer l\'utilisateur'
       );
-    } else {
-      this.user = new User();
     }
   }
 
-  checkIfUsernameIsValid() {
-    if(this.user.username) {
-      this.isUsernameValid = this.user.username.trim().length > 0;
-    } else {
-      this.isUsernameValid = false;
-    }
-  }
-
-  checkIfPasswordIsValid() {
-    if(this.password) {
-      this.isPasswordValid = this.password.trim().length > 5;
-    } else {
-      this.isPasswordValid = false;
-    }
-  }
-
-  checkIfPasswordsMatch() {
-    this.doesPasswordsMatch = this.password === this.password2;
-  }
-
-  useSubmitBtn(action: string) {
-    let submitBtn: HTMLElement = document.getElementsByClassName('submit-btn-' + action)[0] as HTMLElement;
+  useSubmitBtn() {
+    let submitBtn: HTMLElement = document.getElementsByClassName('submit-btn')[0] as HTMLElement;
     submitBtn.click();
   }
 
@@ -75,16 +45,6 @@ export class UserEditComponent implements OnInit {
         },
         error => this.message = 'Un problème est survenu. Veuillez patienter quelques secondes, puis recommencez.'
       )
-    } else {
-      this.checkIfPasswordsMatch();
-      if(this.doesPasswordsMatch && this.isPasswordValid && this.isUsernameValid) {
-        this.dataService.addUser(this.user, this.password).subscribe(
-          next => this.router.navigate(['login'], {queryParams: {registered: 'registered'}}),
-          error => this.message = 'Ce nom d\'utilisateur est déjà pris.'
-        );
-      } else {
-        this.message = 'Les mots de passe ne correspondent pas';
-      }
     }
   }
 
