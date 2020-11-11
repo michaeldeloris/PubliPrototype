@@ -62,8 +62,8 @@ export class TopbarComponent implements OnInit, OnDestroy {
     this.router.navigate(['login']);
   }
 
-  accesUsersEdit() {
-    this.router.navigate(['users', 'edit']);
+  accesUsersAdd() {
+    this.router.navigate(['users', 'add']);
   }
 
   logout() {
