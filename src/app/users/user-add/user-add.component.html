@@ -1,0 +1,32 @@
+<div class="publication-edit container">
+  <h1>Inscription</h1>
+
+  <div *ngIf="message" class="alert alert-danger">{{message}}</div>
+
+  <form #userForm="ngForm" (keyup.enter)="useSubmitBtn()">
+    <div class="row">
+      <div class="form-group col-md-6">
+        <label for="username">Nom d'utilisateur</label>
+        <input type="text" class="form-control" id="username" [(ngModel)]="user.username" name="username" required #username="ngModel" (ngModelChange)="checkIfUsernameIsValid()">
+        <div *ngIf="username.touched && username.invalid" class="alert alert-danger">Nom d'utilisateur requis</div>
+        <div *ngIf="!isUsernameValid && username.touched" class="alert alert-danger">Nom d'utilisateur invalide</div>
+
+        <label for="password">Mot de passe</label>
+        <input type="password" class="form-control" id="password" [(ngModel)]="password" name="password" required #pass1="ngModel" (ngModelChange)="checkIfPasswordIsValid()">
+        <div *ngIf="pass1.touched && pass1.invalid" class="alert alert-danger">Mot de passe requis</div>
+        <div *ngIf="!isPasswordValid && pass1.touched" class="alert alert-danger">Le mot de passe doit contenir au moins 6 caractères</div>
+
+        <label for="password2">Confirmation du mot de passe</label>
+        <input type="password" class="form-control" id="password2" [(ngModel)]="password2" name="password2" required #pass2="ngModel">
+        <div *ngIf="pass2.touched && pass2.invalid" class="alert alert-danger">Confimation de mot de passe requise</div>
+
+        <div class="row">
+          <div class="col">
+            <button type="button" class="btn btn-primary submit-btn" (click)="onSubmit()" [disabled]="userForm.invalid || !isUsernameValid || !isPasswordValid">Inscription</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </form>
+</div>
