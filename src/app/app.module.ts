@@ -14,6 +14,7 @@ import { PublicationEditComponent } from './publications/publication-edit/public
 import { PublicationDetailsComponent } from './publications/publication-details/publication-details.component';
 import { MessageEditComponent } from './messages/message-edit/message-edit.component';
 import { UsersComponent } from './users/users.component';
+import { UserAddComponent } from './users/user-add/user-add.component';
 import { UserEditComponent } from './users/user-edit/user-edit.component';
 import { LoginComponent } from './login/login.component';
 import { AuthRouteGuardService } from './services/auth-route-guard.service';
@@ -29,7 +30,8 @@ const routes: Routes = [
   {path: "publication/add", component: PublicationEditComponent, canActivate : [AuthRouteGuardService], data: {title : 'Ajout'}},
   {path: "publication/edit", component: PublicationEditComponent, canActivate : [AuthRouteGuardService], data: {title : 'Édition'}},
   {path: "users", component: UsersComponent, canActivate : [AuthRouteGuardService], data: {roles: ['ADMIN'], title: 'Utilisateurs'}},
-  {path: "users/edit", component: UserEditComponent, data: {title : 'Inscription'}},
+  {path: "users/add", component: UserAddComponent, data: {title : 'Inscription'}},
+  {path: "users/edit", component: UserEditComponent, data: {title : 'Édition'}},
   {path: "login", component: LoginComponent, data: {title : 'Connexion'}},
   {path: "unauthorized", component: UnauthorizedComponent, data: {title : 'Accès refusé'}},
   {path: "**", component: PageNotFoundComponent, data: {title : '404'}}
@@ -45,6 +47,7 @@ const routes: Routes = [
     PublicationDetailsComponent,
     MessageEditComponent,
     UsersComponent,
+    UserAddComponent,
     UserEditComponent,
     LoginComponent,
     PageNotFoundComponent,
