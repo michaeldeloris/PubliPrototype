@@ -17,6 +17,7 @@ export class TopbarComponent implements OnInit, OnDestroy {
 
   isLoading = true;
   isLogged = false;
+  isAdmin = false;
 
   roleSubscription: Subscription;
   authUpdateSubscription: Subscription;
@@ -33,6 +34,7 @@ export class TopbarComponent implements OnInit, OnDestroy {
     this.authUpdateSubscription = this.authService.authenticationResultEvent.subscribe(
       next => {
         this.isLogged = this.authService.isAuthenticated;
+        this.isAdmin = this.authService.role === 'ADMIN';
         this.isLoading = false;
       }
     )
@@ -46,6 +48,10 @@ export class TopbarComponent implements OnInit, OnDestroy {
     if(this.authUpdateSubscription) {
       this.authUpdateSubscription.unsubscribe();
     }
+  }
+
+  accessUsers() {
+    this.router.navigate(['users']);
   }
 
   accessHome() {
