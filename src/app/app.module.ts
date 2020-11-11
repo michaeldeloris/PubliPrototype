@@ -31,7 +31,7 @@ const routes: Routes = [
   {path: "publication/edit", component: PublicationEditComponent, canActivate : [AuthRouteGuardService], data: {title : 'Édition'}},
   {path: "users", component: UsersComponent, canActivate : [AuthRouteGuardService], data: {roles: ['ADMIN'], title: 'Utilisateurs'}},
   {path: "users/add", component: UserAddComponent, data: {title : 'Inscription'}},
-  {path: "users/edit", component: UserEditComponent, data: {title : 'Édition'}},
+  {path: "users/edit", component: UserEditComponent, canActivate : [AuthRouteGuardService], data: {roles: ['ADMIN'], title : 'Édition'}},
   {path: "login", component: LoginComponent, data: {title : 'Connexion'}},
   {path: "unauthorized", component: UnauthorizedComponent, data: {title : 'Accès refusé'}},
   {path: "**", component: PageNotFoundComponent, data: {title : '404'}}
