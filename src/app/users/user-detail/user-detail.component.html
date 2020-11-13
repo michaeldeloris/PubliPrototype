@@ -1,1 +1,11 @@
-<p>user-detail works!</p>
+<div class="container">
+  <div class="alert-danger" *ngIf="message">{{message}}</div>
+
+  <h3 *ngIf="!user?.id">Utilisateur introuvable</h3>
+
+  <div *ngIf="user?.id">
+    <div>Username : {{user?.username}}</div>
+  </div>
+</div>
+
+
