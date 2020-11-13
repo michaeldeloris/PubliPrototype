@@ -63,6 +63,7 @@ export class AuthService {
           this.isAuthenticated = true;
           this.roleSetEvent.emit(true);
           this.authenticationResultEvent.emit(true);
+          this.setUpUsername();
         }else {
           this.roleSetEvent.emit(false);
         }
