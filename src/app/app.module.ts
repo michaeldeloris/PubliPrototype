@@ -23,6 +23,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {MatIconModule} from '@angular/material/icon';
 import { UnauthorizedComponent } from './errors/unauthorized/unauthorized.component';
+import { UserDetailComponent } from './users/user-detail/user-detail.component';
 
 const routes: Routes = [
   {path: "", component: PublicationsComponent, data: {title : 'Accueil'}},
@@ -51,7 +52,8 @@ const routes: Routes = [
     UserEditComponent,
     LoginComponent,
     PageNotFoundComponent,
-    UnauthorizedComponent
+    UnauthorizedComponent,
+    UserDetailComponent
   ],
   imports: [
     BrowserModule,
