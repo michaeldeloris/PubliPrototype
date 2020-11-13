@@ -28,6 +28,7 @@ export class AuthService {
             this.authenticationResultEvent.emit(true);
           }
         )
+        this.setUpUsername();
         this.setUpRole();
       },
       error => {
