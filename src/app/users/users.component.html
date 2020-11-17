@@ -4,7 +4,7 @@
   <div class="message bg-danger p-4" *ngIf="errorMessage">{{errorMessage}}</div>
 
   <div class="user" *ngFor="let user of users">
-    <div class="username">{{user.username}}</div>
+    <div class="username link" (click)="accessUser(user.id)">{{user.username}}</div>
     <div class="action-icons">
       <span class="material-icons icon" (click)="accessEditUser(user.id)">edit</span>
       <span class="material-icons icon" (click)="deleteUser(user.id)">delete</span>

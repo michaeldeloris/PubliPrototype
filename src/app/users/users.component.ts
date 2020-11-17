@@ -42,6 +42,10 @@ export class UsersComponent implements OnInit {
     }
   }
 
+  accessUser(id: number) {
+    this.router.navigate(['users', 'detail'], {queryParams: {id}});
+  }
+
   accessEditUser(id: number) {
     this.router.navigate(['users', 'edit'], {queryParams: {id}});
   }
