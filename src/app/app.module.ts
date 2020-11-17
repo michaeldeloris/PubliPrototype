@@ -33,7 +33,7 @@ const routes: Routes = [
   {path: "users", component: UsersComponent, canActivate : [AuthRouteGuardService], data: {roles: ['ADMIN'], title: 'Utilisateurs'}},
   {path: "users/add", component: UserAddComponent, data: {title : 'Inscription'}},
   {path: "users/edit", component: UserEditComponent, canActivate : [AuthRouteGuardService], data: {roles: ['ADMIN'], title : 'Édition'}},
-  {path: "users/detail", component: UserDetailComponent, canActivate : [AuthRouteGuardService], data: {roles: ['USER'], title : 'Détail'}},
+  {path: "users/detail", component: UserDetailComponent, canActivate : [AuthRouteGuardService], data: {roles: ['ADMIN','USER'], title : 'Détail'}},
   {path: "login", component: LoginComponent, data: {title : 'Connexion'}},
   {path: "unauthorized", component: UnauthorizedComponent, data: {title : 'Accès refusé'}},
   {path: "**", component: PageNotFoundComponent, data: {title : '404'}}
