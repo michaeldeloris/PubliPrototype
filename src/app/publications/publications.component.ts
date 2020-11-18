@@ -1,9 +1,10 @@
 import { Subscription } from 'rxjs';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { Publication } from '../models/Publication';
 import { DataService } from '../services/data.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import { User } from '../models/User';
 
 @Component({
   selector: 'app-publications',
@@ -11,6 +12,9 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./publications.component.less']
 })
 export class PublicationsComponent implements OnInit, OnDestroy {
+
+  @Input()
+  user: User;
 
   publications: Array<Publication>;
 
@@ -37,6 +41,9 @@ export class PublicationsComponent implements OnInit, OnDestroy {
     this.dataService.getPublications().subscribe(
       next => {
         this.publications = next;
+        if(this.user) {
+          this.publications = this.publications.filter(publication => publication.author.id == this.user.id);
+        }
         this.loadingData = false;
         this.message = '';
         this.sortByDate();

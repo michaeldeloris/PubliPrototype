@@ -1,11 +1,12 @@
 <div  class="container publications">
-  <div class="add_btn btn btn-primary col-md-6" role="button" (click)="addPublication()">Nouvelle publication</div>
+  <div class="add_btn btn btn-primary col-md-6" role="button" *ngIf="!user" (click)="addPublication()">Nouvelle publication</div>
   <div class="bg-danger p-5" *ngIf="message">{{message}}</div>
   <div class="spinner-border spinner m-5" role="status" *ngIf="loadingData && !message">
     <span class="sr-only">Loading...</span>
   </div>
 
-  <h3 class="no-pubs" *ngIf="publications?.length === 0">Pas de publication ! Soyez le premier à poster !</h3>
+  <h3 class="no-pubs" *ngIf="!user && publications?.length === 0">Pas de publication ! Soyez le premier à poster !</h3>
+  <h3 class="no-pubs" *ngIf="user && publications?.length === 0">Aucune publication</h3>
 
   <div class="publication {{isAdmin ? 'admin' : ''}} clickable" *ngFor="let publication of publications" (click)="accessPublication(publication.id)">
     <div class="buttons">
