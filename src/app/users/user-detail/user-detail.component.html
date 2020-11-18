@@ -3,9 +3,9 @@
 
   <h3 *ngIf="!user?.id">Utilisateur introuvable</h3>
 
-  <div *ngIf="user?.id">
-    <div>Username : {{user?.username}}</div>
+  <div class="profil" *ngIf="user?.id">
+    <div class="username">{{user?.username}}</div>
+    <div class="role" *ngIf="user.role === 'ADMIN'">Administrateur</div>
+    <app-publications [user]="user"></app-publications>
   </div>
 </div>
-
-
