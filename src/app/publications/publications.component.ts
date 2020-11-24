@@ -75,6 +75,10 @@ export class PublicationsComponent implements OnInit, OnDestroy {
     this.router.navigate(['publication'], {queryParams: {id}});
   }
 
+  accessUserPage(id: number) {
+    this.router.navigate(['users', 'detail'], {queryParams: {id}});
+  }
+
   addPublication() {
     this.router.navigate(['publication', 'add']);
   }
