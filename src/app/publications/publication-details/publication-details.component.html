@@ -16,7 +16,9 @@
   <h1 class="title">{{publication?.title}}</h1>
   <div class="infos">
     <div class="date" *ngIf="publication">Publié le {{publication?.publicationDate | date : 'dd/MM/yyyy à H:mm:ss'}}</div>
-    <div class="author" *ngIf="publication">par {{publication?.author.username}}</div>
+    <div class="author-label" *ngIf="publication">par
+      <div class="author-name link" (click)="accessUserPage(publication?.author.id)">{{publication?.author.username}}</div>
+    </div>
   </div>
 
   <div class="image" *ngIf="publication?.imagePath"><img src="{{publication.imagePath}}"></div>
@@ -29,7 +31,9 @@
     <h4 *ngIf="publication?.messages.length === 0">Il n'y a pas de messages... Soyez le premier à réagir ! </h4>
     <div class="message" *ngFor="let message of publication?.messages">
       <div class="infos">
-        <div class="author-label">De <div class="author-name">{{message.author.username}}</div></div>
+        <div class="author-label">De
+          <div class="author-name link" (click)="accessUserPage(publication?.author.id)">{{message.author.username}}</div>
+        </div>
         <div class="date">le {{message.publicationDate | date : 'dd/MM/yyyy à H:mm:ss'}}</div>
       </div>
       <div class="message-content">{{message.content}}</div>

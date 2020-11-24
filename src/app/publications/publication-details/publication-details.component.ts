@@ -72,6 +72,10 @@ export class PublicationDetailsComponent implements OnInit, OnDestroy {
     this.authService.setUpUsername();
   }
 
+  accessUserPage(id: number) {
+    this.router.navigate(['users', 'detail'], {queryParams: {}});
+  }
+
   editPublication(id: number) {
     this.router.navigate(['publication', 'edit'], {queryParams: {id}});
   }
