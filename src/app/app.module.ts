@@ -26,17 +26,17 @@ import { UnauthorizedComponent } from './errors/unauthorized/unauthorized.compon
 import { UserDetailComponent } from './users/user-detail/user-detail.component';
 
 const routes: Routes = [
-  {path: "", component: PublicationsComponent, data: {title : 'Accueil'}},
-  {path: "publication", component: PublicationDetailsComponent, data: {title : 'Publication'}},
-  {path: "publication/add", component: PublicationEditComponent, canActivate : [AuthRouteGuardService], data: {title : 'Ajout'}},
-  {path: "publication/edit", component: PublicationEditComponent, canActivate : [AuthRouteGuardService], data: {title : 'Édition'}},
-  {path: "users", component: UsersComponent, canActivate : [AuthRouteGuardService], data: {roles: ['ADMIN'], title: 'Utilisateurs'}},
-  {path: "users/add", component: UserAddComponent, data: {title : 'Inscription'}},
-  {path: "users/edit", component: UserEditComponent, canActivate : [AuthRouteGuardService], data: {roles: ['ADMIN'], title : 'Édition'}},
-  {path: "users/detail", component: UserDetailComponent, canActivate : [AuthRouteGuardService], data: {roles: ['ADMIN','USER'], title : 'Détail'}},
-  {path: "login", component: LoginComponent, data: {title : 'Connexion'}},
-  {path: "unauthorized", component: UnauthorizedComponent, data: {title : 'Accès refusé'}},
-  {path: "**", component: PageNotFoundComponent, data: {title : '404'}}
+  {path: '', component: PublicationsComponent, data: {title : 'Accueil'}},
+  {path: 'publication', component: PublicationDetailsComponent, data: {title : 'Publication'}},
+  {path: 'publication/add', component: PublicationEditComponent, canActivate : [AuthRouteGuardService], data: {title : 'Ajout'}},
+  {path: 'publication/edit', component: PublicationEditComponent, canActivate : [AuthRouteGuardService], data: {title : 'Édition'}},
+  {path: 'users', component: UsersComponent, canActivate : [AuthRouteGuardService], data: {roles: ['ADMIN'], title: 'Utilisateurs'}},
+  {path: 'users/add', component: UserAddComponent, data: {title : 'Inscription'}},
+  {path: 'users/edit', component: UserEditComponent, canActivate : [AuthRouteGuardService], data: {roles: ['ADMIN'], title : 'Édition'}},
+  {path: 'users/detail', component: UserDetailComponent, canActivate : [AuthRouteGuardService], data: {roles: ['ADMIN', 'USER'], title : 'Détail'}},
+  {path: 'login', component: LoginComponent, data: {title : 'Connexion'}},
+  {path: 'unauthorized', component: UnauthorizedComponent, data: {title : 'Accès refusé'}},
+  {path: '**', component: PageNotFoundComponent, data: {title : '404'}}
 ];
 
 @NgModule({
