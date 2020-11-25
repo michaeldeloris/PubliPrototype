@@ -29,7 +29,7 @@ export class UserAddComponent implements OnInit {
   }
 
   checkIfUsernameIsValid() {
-    if(this.user.username) {
+    if (this.user.username) {
       this.isUsernameValid = this.user.username.trim().length > 0;
     } else {
       this.isUsernameValid = false;
@@ -37,7 +37,7 @@ export class UserAddComponent implements OnInit {
   }
 
   checkIfPasswordIsValid() {
-    if(this.password) {
+    if (this.password) {
       this.isPasswordValid = this.password.trim().length > 5;
     } else {
       this.isPasswordValid = false;
@@ -49,13 +49,13 @@ export class UserAddComponent implements OnInit {
   }
 
   useSubmitBtn() {
-    let submitBtn: HTMLElement = document.getElementsByClassName('submit-btn')[0] as HTMLElement;
+    const submitBtn: HTMLElement = document.getElementsByClassName('submit-btn')[0] as HTMLElement;
     submitBtn.click();
   }
 
   onSubmit() {
     this.checkIfPasswordsMatch();
-    if(this.doesPasswordsMatch && this.isPasswordValid && this.isUsernameValid) {
+    if (this.doesPasswordsMatch && this.isPasswordValid && this.isUsernameValid) {
       this.dataService.addUser(this.user, this.password).subscribe(
         next => this.router.navigate(['login'], {queryParams: {registered: 'registered'}}),
         error => this.message = 'Ce nom d\'utilisateur est déjà pris.'

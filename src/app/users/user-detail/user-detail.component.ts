@@ -27,7 +27,7 @@ export class UserDetailComponent implements OnInit {
     const id = this.activatedRoute.snapshot.queryParams['id'];
     this.dataService.getUsers().subscribe(
       next => {
-        if(id) {
+        if (id) {
           this.user = next.find(user => user.id === +id);
         } else {
           this.user = next.find(user => user.username === this.authService.username);

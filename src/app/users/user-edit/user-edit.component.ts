@@ -21,7 +21,7 @@ export class UserEditComponent implements OnInit {
 
   ngOnInit(): void {
     const id = this.route.snapshot.queryParams['id'];
-    if(id) {
+    if (id) {
       this.dataService.getUser(+id).subscribe(
         next => {
           this.user = next;
@@ -33,18 +33,18 @@ export class UserEditComponent implements OnInit {
   }
 
   useSubmitBtn() {
-    let submitBtn: HTMLElement = document.getElementsByClassName('submit-btn')[0] as HTMLElement;
+    const submitBtn: HTMLElement = document.getElementsByClassName('submit-btn')[0] as HTMLElement;
     submitBtn.click();
   }
 
   onSubmit() {
-    if(this.user.id) {
+    if (this.user.id) {
       this.dataService.updateUser(this.user).subscribe(
         next => {
           location.reload();
         },
         error => this.message = 'Un problème est survenu. Veuillez patienter quelques secondes, puis recommencez.'
-      )
+      );
     }
   }
 
