@@ -73,7 +73,7 @@ export class PublicationDetailsComponent implements OnInit, OnDestroy {
   }
 
   accessUserPage(id: number) {
-    this.router.navigate(['users', 'detail'], {queryParams: {}});
+    this.router.navigate(['users', 'detail'], {queryParams: {id}});
   }
 
   editPublication(id: number) {
