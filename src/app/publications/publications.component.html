@@ -10,8 +10,8 @@
 
   <div class="publication {{isAdmin ? 'admin' : ''}} clickable" *ngFor="let publication of publications" (click)="accessPublication(publication.id)">
     <div class="buttons">
-      <a class="btn" role="button" (click)="editPublication(publication.id)" *ngIf="isAdmin"><span class="oi oi-pencil"></span></a>
-      <a class="btn" role="button" (click)="deletePublication(publication.id)" *ngIf="isAdmin"><span class="oi oi-trash"></span></a>
+      <a class="btn" role="button" (click)="editPublication(publication.id)" *ngIf="isAdmin"><span class="material-icons">edit</span></a>
+      <a class="btn" role="button" (click)="deletePublication(publication.id)" *ngIf="isAdmin"><span class="material-icons">delete</span></a>
     </div>
     <div class="content">
       <div class="image" *ngIf="publication.imagePath"><img src='{{publication.imagePath}}'></div>
