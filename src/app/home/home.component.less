@@ -1,0 +1,40 @@
+.homepage {
+  .title {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 35px;
+  }
+  .collapse_btn {
+    display: flex;
+    font-size: 28px;
+    color: black;
+    text-decoration: none;
+    margin-top: 10px;
+    .question {
+      font-size: 25px;
+      margin-bottom: 10px;
+      margin-top: 10px;
+    }
+    .material-icons {
+      font-size: 25px;
+      margin-left: 5px;
+      margin-top: 8px;
+    }
+  }
+  .collapsed {
+    .expended_icon {
+      display: none;
+    }
+    .collapsed_icon {
+      display: content;
+    }
+  }
+  :not(.collapsed){
+    .expended_icon {
+      display: content;
+    }
+    .collapsed_icon {
+      display: none;
+    }
+  }
+}
