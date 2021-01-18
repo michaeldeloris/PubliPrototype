@@ -27,7 +27,7 @@ import { UserDetailComponent } from './users/user-detail/user-detail.component';
 import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
-  {path: '', component: PublicationsComponent, data: {title : 'Accueil'}},
+  {path: '', component: HomeComponent, data: {title : 'Accueil'}},
   {path: 'publication', component: PublicationDetailsComponent, data: {title : 'Publication'}},
   {path: 'publication/add', component: PublicationEditComponent, canActivate : [AuthRouteGuardService], data: {title : 'Ajout'}},
   {path: 'publication/edit', component: PublicationEditComponent, canActivate : [AuthRouteGuardService], data: {title : 'Édition'}},
